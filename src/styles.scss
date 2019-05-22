@@ -1,0 +1,11 @@
+
+$button-align-center: center;
+$margin-login-top: 100px;
+
+.centerize {
+    text-align: $button-align-center;
+}
+
+.login-button-margin {
+    margin-top: $margin-login-top;
+}
