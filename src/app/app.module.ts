@@ -14,7 +14,7 @@ import { ProfileIndicatorComponent } from './components/profile-indicator/profil
     AppComponent,
     ContentPageComponent,
     LoginPageComponent,
-    ProfileIndicatorComponent,
+    ProfileIndicatorComponent
   ],
   imports: [
     BrowserModule,
