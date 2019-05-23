@@ -2,12 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfileIndicatorComponent } from './components/profile-indicator/profile-indicator.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,8 @@ import { ProfileIndicatorComponent } from './components/profile-indicator/profil
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule
