@@ -1,18 +1,44 @@
-// TODO: remove colors when components implemented
+
+@import "src/app/components/content-page/content-page-variables.scss";
 
 header {
-  background: blue;
+    background: $headerBgColor;
 }
 
 nav {
-  background: red;
+    background: $navBgColor;
 }
 
 main {
-  padding: 50px 0 0 0;
-  background: yellow;
+    padding: $mainPadding;
+}
+
+.card {
+  width: $card-width;
+  height: $card-height;
+  margin: $card-margin;
+  padding: $card-padding;
+  background-color: $card-bgColor;
+  border: $card-border;
+  flex-direction: $card-flex-direction;
 }
 
 .bottom-bar {
-    background: green;
+    background: $bottomBarBgColor;
+}
+
+.software-box-outer {
+    padding: $card-padding;
+}
+
+@media screen and (min-width:767px) {
+    .flex {
+        display: $flex-direction;
+        justify-content: $flex-justify-content;
+    }
+  
+    .row.flex:before,
+    .row.flex:after {
+        display: $row-flex-display;
+    }
 }

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content-page.component.scss']
 })
 export class ContentPageComponent implements OnInit {
+  catAvatar3 = '../../../../assets/images/cat3.png';
 
   constructor() { }
 

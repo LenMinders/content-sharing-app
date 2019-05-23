@@ -1,0 +1,20 @@
+/* header , nav, main, bottom bar ,content*/
+$headerBgColor: blue;
+$navBgColor: #ff0000;
+$mainPadding: 50px 0 0 0;
+$bottomBarBgColor: green;
+$contentAreaPadding: 0px;
+
+/* card customization*/
+$card-width: 100%;
+$card-height: 200px;
+$card-margin: 5px;
+$card-padding: 0%;
+$card-bgColor: transparent;
+$card-border: none;
+$card-flex-direction: inherit;
+
+/* mobile responsive card customization*/
+$flex-direction: flex;
+$flex-justify-content: space-between;
+$row-flex-display:none;
