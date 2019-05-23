@@ -11,9 +11,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    console.log(environment.firebaseConfig);
-  }
+  ngOnInit() {}
 
   googleSignIn() {
     this.authService.doGoogleLogin();

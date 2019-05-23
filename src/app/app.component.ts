@@ -9,7 +9,5 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   title = 'content-sharing-app';
 
-  constructor() {
-    console.log(environment.firebaseConfig);
-  }
+  constructor() {}
 }
