@@ -1,51 +1,47 @@
-@import "src/app/components/content-page/content-page-variables.scss";
-
 header {
-    background: $headerBgColor;
+    background: blue;
 }
 
 nav {
-    background: $navBgColor;
+    background: #ff0000;
 }
 
 main {
-    padding: $mainPadding;
+    padding: 50px 0 0 0;
 }
 
 .card {
-    width: $card-width;
-    height: $card-height;
-    margin: $card-margin;
-    padding: $card-padding;
-    background-color: $card-bgColor;
-    border: $card-border;
-    flex-direction: $card-flex-direction;
+    width: 100%;
+    height: 200px;
+    margin: 5px;
+    padding: 0%;
+    background-color: transparent;
+    border: none;
+    flex-direction: inherit;
     justify-content: center;
     align-content: center;
-
-
 }
 
 .bottom-bar {
-    background: $bottomBarBgColor;
+    background: green;
 }
 
 .card-img {
-    object-fit: cover;
+    object-fit:  cover;
 }
 
 .software-box-outer {
-    padding: $card-padding;
+    padding: 0%;
 }
 
 @media screen and (min-width:767px) {
     .flex {
-        display: $flex-direction;
-        justify-content: $flex-justify-content;
+        display:  flex;
+        justify-content: space-between;
     }
 
     .row.flex:before,
     .row.flex:after {
-        display: $row-flex-display;
+        display: none;
     }
 }

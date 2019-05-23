@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-page',
@@ -11,14 +11,10 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-<<<<<<< HEAD
-  ngOnInit() { }
-=======
   ngOnInit() {}
 
   googleSignIn() {
     this.authService.doGoogleLogin();
   }
->>>>>>> develop
 
 }
