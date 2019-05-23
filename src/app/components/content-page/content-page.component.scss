@@ -1,4 +1,3 @@
-
 @import "src/app/components/content-page/content-page-variables.scss";
 
 header {
@@ -14,17 +13,25 @@ main {
 }
 
 .card {
-  width: $card-width;
-  height: $card-height;
-  margin: $card-margin;
-  padding: $card-padding;
-  background-color: $card-bgColor;
-  border: $card-border;
-  flex-direction: $card-flex-direction;
+    width: $card-width;
+    height: $card-height;
+    margin: $card-margin;
+    padding: $card-padding;
+    background-color: $card-bgColor;
+    border: $card-border;
+    flex-direction: $card-flex-direction;
+    justify-content: center;
+    align-content: center;
+
+
 }
 
 .bottom-bar {
     background: $bottomBarBgColor;
+}
+
+.card-img {
+    object-fit: cover;
 }
 
 .software-box-outer {
@@ -36,7 +43,7 @@ main {
         display: $flex-direction;
         justify-content: $flex-justify-content;
     }
-  
+
     .row.flex:before,
     .row.flex:after {
         display: $row-flex-display;
