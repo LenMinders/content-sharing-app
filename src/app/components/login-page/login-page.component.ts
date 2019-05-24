@@ -16,8 +16,7 @@ export class LoginPageComponent implements OnInit {
   googleSignIn() {
     this.authService.doGoogleLogin()
       .then(res => {
-        const url = `/${res.user.displayName}/${res.user.email}/${res.user.photoUrl}`;
-        this.router.navigateByUrl(url);
+        this.router.navigateByUrl('/');
       });
   }
 }
