@@ -1,6 +1,6 @@
 <div class="d-flex" *ngIf="user">
-  <fa-icon [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
-  
+  <fa-icon *ngIf="user.photoURL === 'undefined'" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
+  <img *ngIf="user.photoURL !== 'undefined'" [src]="user.photoURL" alt="profile picture">
   <div>
     <div class="font-weight-bold">{{user.displayName}}</div>
     <div id="email">{{user.email}}</div>
