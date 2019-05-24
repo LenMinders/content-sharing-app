@@ -12,6 +12,10 @@ main {
   grid-template-columns: auto auto auto;
 }
 
+.img-button {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .item-img {
   object-fit: cover;
 }
