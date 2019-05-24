@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content-page.component.scss']
 })
 export class ContentPageComponent implements OnInit {
-  catAvatar3 = '../../../../assets/images/cat3.png';
+  // TODO: remove images form assets once media comes from online storage
+  tempContent = [
+    '../../../../assets/images/cat3.png',
+    '../../../../assets/images/forrest-portrait.jpeg',
+    '../../../../assets/images/space-large.jpg',
+    '../../../../assets/images/bridge.jpg'
+  ];
 
   constructor() { }
 
