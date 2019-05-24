@@ -1,6 +1,6 @@
 # ContentSharingApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+Web app made with Angular for the sharing of digital content. Users can use the app to post media to thier personal page. Users of the app can search for other users and view the personal page of said users.
 
 ## Development server
 
@@ -28,12 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Content Sharing App - Technologies used
 
-Google Firebase
-Font Awesome
-Angular Fire
-
-## Grid Component branch 
-
-Creation of the grid component 3 columns used d-flex bootstrap class.
-
-
+* Google Firebase
+* Font Awesome
+* Angular Fire
+* Bootstrap
