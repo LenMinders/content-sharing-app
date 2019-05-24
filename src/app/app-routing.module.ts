@@ -10,6 +10,9 @@ const routes: Routes = [{
 }, {
   path: 'login',
   component: LoginPageComponent
+}, {
+  path: ':displayName/:email/:photoUrl',
+  component: ContentPageComponent
 }];
 
 @NgModule({

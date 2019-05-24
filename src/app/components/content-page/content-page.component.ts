@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
+import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
@@ -13,6 +17,8 @@ export class ContentPageComponent implements OnInit {
     '../../../../assets/images/space-large.jpg',
     '../../../../assets/images/bridge.jpg'
   ];
+
+  user: User;
 
   constructor() { }
 
