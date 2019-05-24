@@ -1,6 +1,6 @@
 # ContentSharingApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+Web app made with Angular for the sharing of digital content. Users can use the app to post media to thier personal page. Users of the app can search for other users and view the personal page of said users.
 
 ## Development server
 
@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Content Sharing App - Technologies used
+
+* Google Firebase
+* Font Awesome
+* Angular Fire
+* Bootstrap

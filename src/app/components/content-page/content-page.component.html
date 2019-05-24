@@ -9,8 +9,10 @@
   </nav>
 </header>
 
-<main class="container">
-  content
+<main class="container px-1">
+  <div *ngFor="let content of tempContent">
+    <img class="item-img w-100 h-100 p-1" [src]="content" alt="Picture">
+  </div>
 </main>
 
 <div class="
