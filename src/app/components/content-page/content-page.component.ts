@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import { ActivatedRoute } from '@angular/router';
+
+import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
@@ -15,6 +19,8 @@ export class ContentPageComponent implements OnInit {
     '../../../../assets/images/bridge.jpg'
   ];
   faSearch = faSearch;
+
+  user: User;
 
   constructor() { }
 
