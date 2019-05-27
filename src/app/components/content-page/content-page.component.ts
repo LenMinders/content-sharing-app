@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { User } from 'src/app/models/user';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
