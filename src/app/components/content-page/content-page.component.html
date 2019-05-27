@@ -9,9 +9,10 @@
       <fa-icon [icon]="faSearch"></fa-icon>
     </button>
 
-    <button type="button" class="img-button my-auto border-0 d-none d-sm-block">
+    <label for="file-upload" class="hand-cursor my-auto d-none d-sm-block px-2">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
-    </button>
+    </label>
+    <input id="file-upload" type="file" (change)="uploadFile($event)" />
   </nav>
 
   <div id="collapseExample" [ngbCollapse]="isCollapsed" class="p-2">
@@ -25,16 +26,9 @@
   </div>
 </main>
 
-<div class="
-  bottom-bar
-  fixed-bottom
-  d-block
-  d-sm-none
-  justify-content-center
-  d-flex
-  p-2">
-
-  <button type="button" class="img-button border-0">
+<div class="bottom-bar fixed-bottom d-block d-sm-none justify-content-center d-flex p-2">
+  <label for="file-upload" class="hand-cursor my-auto px-2">
     <fa-icon [icon]="faPlusSquare"></fa-icon>
-  </button>
+  </label>
+  <input id="file-upload" type="file" (change)="uploadFile($event)" />
 </div>
