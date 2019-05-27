@@ -24,6 +24,14 @@ main {
   background: green;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
 @media screen and (max-width:400px) {
   main {
     grid-template-columns: auto auto;

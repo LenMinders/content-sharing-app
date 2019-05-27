@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { ActivatedRoute } from '@angular/router';
-
-import { User } from 'src/app/models/user';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
   styleUrls: ['./content-page.component.scss']
 })
-export class ContentPageComponent implements OnInit {
+export class ContentPageComponent {
   // TODO: remove images form assets once media comes from online storage
   tempContent = [
     '../../../../assets/images/cat3.png',
@@ -18,13 +17,14 @@ export class ContentPageComponent implements OnInit {
     '../../../../assets/images/space-large.jpg',
     '../../../../assets/images/bridge.jpg'
   ];
+
+  faPlusSquare = faPlusSquare;
   faSearch = faSearch;
 
-  user: User;
+  constructor(private storage: StorageService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  uploadFile($event: any): void {
+    this.storage.uploadFile($event.target.files[0]);
   }
 
 }
