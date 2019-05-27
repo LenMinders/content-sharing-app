@@ -9,12 +9,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./profile-indicator.component.scss']
 })
 export class ProfileIndicatorComponent implements OnInit {
+  faUserCircle = faUserCircle;
   user: User;
-  faUserCircle: any;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
-    this.faUserCircle = faUserCircle;
-  }
+  constructor(private firebaseAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.firebaseAuth.user.subscribe(
