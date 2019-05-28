@@ -4,8 +4,8 @@
       <app-profile-indicator></app-profile-indicator>
     </div>
 
-    <button type="button" class="img-button my-auto ml-auto border-0" (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    <button type="button" class="img-button my-auto ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
+      [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
       <fa-icon [icon]="faSearch"></fa-icon>
     </button>
 
@@ -15,7 +15,7 @@
     <input id="file-upload" type="file" (change)="uploadFile($event)" />
   </nav>
 
-  <div id="collapseExample" [ngbCollapse]="isCollapsed" class="p-2">
+  <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
     <input type="text" class="form-control" placeholder="Search Users">
   </div>
 </header>

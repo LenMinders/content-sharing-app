@@ -20,6 +20,7 @@ export class ContentPageComponent {
 
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
+  isSearchCollapsed = true;
 
   constructor(private storage: StorageService) { }
 
