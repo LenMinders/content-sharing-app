@@ -31,17 +31,16 @@ export class ContentPageComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-   const email = this.firebaseAuth.auth.currentUser.email.replace(/\./g, '_');
-   console.log(email);
-   this.firebaseStorage = this.db.list<Image>(email)
-   .valueChanges()
-   .subscribe(values => {
-        this.images = values;
-    });
-
-   const user = this.firebaseAuth.auth.currentUser;
-   if (!user) {
+    const user = this.firebaseAuth.auth.currentUser;
+    if (!user) {
       this.router.navigateByUrl('/login');
+    } else {
+      const email = user.email.replace(/\./g, '_');
+      this.firebaseStorage = this.db.list<Image>(email)
+      .valueChanges()
+      .subscribe(values => {
+          this.images = values;
+      });
     }
   }
 
