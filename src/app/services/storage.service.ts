@@ -18,7 +18,7 @@ export class StorageService {
   uploadFile(file: File) {
     const storageRef = firebase.storage().ref();
 
-    storageRef.child(this.user.email).child(file.name).put(file)
+    storageRef.child(this.user.email).child(Date.now() + '.' + file.name.split('.').pop()).put(file)
       .then(snapshot => {
         console.log('Uploaded a file!');
       });
