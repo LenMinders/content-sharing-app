@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
-
 @Component({
   selector: 'app-profile-indicator',
   templateUrl: './profile-indicator.component.html',
@@ -19,5 +18,4 @@ export class ProfileIndicatorComponent implements OnInit {
       user => this.user = user
     );
   }
-
 }

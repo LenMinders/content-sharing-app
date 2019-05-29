@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
 import { StorageService } from 'src/app/services/storage.service';
-
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
@@ -22,10 +22,15 @@ export class ContentPageComponent {
   faSearch = faSearch;
   isSearchCollapsed = true;
 
-  constructor(private storage: StorageService) { }
+  constructor(private storage: StorageService, private router: Router) {
+
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      this.router.navigateByUrl('/login');
+    }
+  }
 
   uploadFile($event: any): void {
     this.storage.uploadFile($event.target.files[0]);
   }
-
 }
