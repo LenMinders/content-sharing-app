@@ -18,8 +18,8 @@
 </header>
 
 <main class="container px-1">
-  <div *ngFor="let content of tempContent">
-    <img class="item-img w-100 h-100 p-1" [src]="content" alt="Picture">
+  <div *ngFor="let image of images">
+    <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture">
   </div>
 </main>
 

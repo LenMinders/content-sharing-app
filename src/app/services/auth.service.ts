@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 })
 export class AuthService {
 
-  constructor(private firebaseAuth: AngularFireAuth) { }
+  constructor(private firebaseAuth: AngularFireAuth) {}
 
   doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
