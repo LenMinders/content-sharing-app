@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,7 +30,8 @@ export class ContentPageComponent implements OnInit {
 
   constructor(private firebaseAuth: AngularFireAuth,
               public db: AngularFireDatabase,
-              private storage: StorageService) {}
+              private storage: StorageService,
+              private router: Router) {}
 
   ngOnInit() {
    const email = this.firebaseAuth.auth.currentUser.email.replace(/\./g, '_');
@@ -39,6 +41,11 @@ export class ContentPageComponent implements OnInit {
    .subscribe(values => {
         this.images = values;
     });
+
+   const user = this.firebaseAuth.auth.currentUser;
+   if (!user) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   uploadFile($event: any): void {
