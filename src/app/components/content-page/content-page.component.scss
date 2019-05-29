@@ -1,9 +1,14 @@
+$navbar-color: #fafafa;
+$navbar-border-color: #bdbdbd;
+$default-border: 1px solid $navbar-border-color;
+
 header {
-  background: red;
+  background: $navbar-color;
+  border-bottom: $default-border;
 }
 
 nav {
-  background: red;
+  background: $navbar-color;
 }
 
 main {
@@ -21,7 +26,8 @@ main {
 }
 
 .bottom-bar {
-  background: green;
+  background: $navbar-color;
+  border-top: $default-border;
 }
 
 input[type="file"] {
