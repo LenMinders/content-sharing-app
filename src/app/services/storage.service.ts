@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user';
 
 @Injectable({
@@ -9,14 +9,14 @@ import { User } from '../models/user';
 export class StorageService {
   user: User;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(private firebaseAuth: AngularFireAuth, private firebaseStorage: AngularFireStorage) {
     this.firebaseAuth.user.subscribe(
       user => this.user = user
     );
   }
 
   uploadFile(file: File) {
-    const storageRef = firebase.storage().ref();
+    const storageRef = this.firebaseStorage.storage.ref();
 
     storageRef.child(this.user.email).child(Date.now() + '.' + file.name.split('.').pop()).put(file)
       .then(snapshot => {

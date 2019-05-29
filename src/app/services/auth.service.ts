@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
 @Injectable({
@@ -7,7 +7,7 @@ import * as firebase from 'firebase/app';
 })
 export class AuthService {
 
-  constructor(private firebaseAuth: AngularFireAuth) { }
+  constructor(private firebaseAuth: AngularFireAuth) {}
 
   doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {

@@ -1,34 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 import { StorageService } from 'src/app/services/storage.service';
+import { Image } from 'src/app/models/image';
+import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-content-page',
   templateUrl: './content-page.component.html',
   styleUrls: ['./content-page.component.scss']
 })
-export class ContentPageComponent {
-  // TODO: remove images form assets once media comes from online storage
-  tempContent = [
-    '../../../../assets/images/cat3.png',
-    '../../../../assets/images/forrest-portrait.jpeg',
-    '../../../../assets/images/space-large.jpg',
-    '../../../../assets/images/bridge.jpg'
-  ];
 
+export class ContentPageComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
   isSearchCollapsed = true;
 
-  constructor(private storage: StorageService, private router: Router, private firebaseAuth: AngularFireAuth) {
+  user: User;
+  firebaseStorage: any;
+  images: Image[];
 
-    const user = this.firebaseAuth.auth.currentUser;
+  constructor(private firebaseAuth: AngularFireAuth,
+              public db: AngularFireDatabase,
+              private storage: StorageService,
+              private router: Router) {}
+
+  ngOnInit() {
+    this.firebaseAuth.auth.onAuthStateChanged(user => {
     if (!user) {
       this.router.navigateByUrl('/login');
+    } else {
+      const email = user.email.replace(/\./g, '_');
+      this.firebaseStorage = this.db.list<Image>(email)
+      .valueChanges()
+      .subscribe(values => {
+          this.images = values;
+      });
     }
-  }
+  });
+}
 
   uploadFile($event: any): void {
     this.storage.uploadFile($event.target.files[0]);

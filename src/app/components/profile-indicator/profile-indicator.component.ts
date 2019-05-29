@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/models/user';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-profile-indicator',
