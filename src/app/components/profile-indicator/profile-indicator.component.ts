@@ -19,5 +19,4 @@ export class ProfileIndicatorComponent implements OnInit {
       user => this.user = user
     );
   }
-
 }

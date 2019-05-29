@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 
-
 const routes: Routes = [{
   path: '',
   component: ContentPageComponent
@@ -11,7 +10,6 @@ const routes: Routes = [{
   path: 'login',
   component: LoginPageComponent
 }];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
