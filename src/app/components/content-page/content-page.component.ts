@@ -31,7 +31,7 @@ export class ContentPageComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    const user = this.firebaseAuth.auth.currentUser;
+    this.firebaseAuth.auth.onAuthStateChanged(user => {
     if (!user) {
       this.router.navigateByUrl('/login');
     } else {
@@ -42,7 +42,8 @@ export class ContentPageComponent implements OnInit {
           this.images = values;
       });
     }
-  }
+  });
+}
 
   uploadFile($event: any): void {
     this.storage.uploadFile($event.target.files[0]);
