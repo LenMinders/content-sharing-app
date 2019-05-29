@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfileIndicatorComponent } from './components/profile-indicator/profile-indicator.component';
-import { environment } from 'src/environments/enviroment';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
