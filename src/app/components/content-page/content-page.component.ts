@@ -4,14 +4,11 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFireDatabase } from '@angular/fire/database';
-import { User } from 'src/app/models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { StorageService } from 'src/app/services/storage.service';
-export interface Image {
-  id: string;
-  imageUrl: string;
-}
+import { Image } from 'src/app/models/image';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-content-page',
