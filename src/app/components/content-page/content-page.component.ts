@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from 'src/app/models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { StorageService } from 'src/app/services/storage.service';
 export interface Image {
   id: string;
   imageUrl: string;
@@ -17,13 +19,17 @@ export interface Image {
 })
 
 export class ContentPageComponent implements OnInit {
+  faPlusSquare = faPlusSquare;
   faSearch = faSearch;
+  isSearchCollapsed = true;
 
   user: User;
   firebaseStorage: any;
   images: Image[];
 
-  constructor(private firebaseAuth: AngularFireAuth, public db: AngularFireDatabase) {}
+  constructor(private firebaseAuth: AngularFireAuth,
+              public db: AngularFireDatabase,
+              private storage: StorageService) {}
 
   ngOnInit() {
    const email = this.firebaseAuth.auth.currentUser.email.replace(/\./g, '_');
@@ -33,5 +39,9 @@ export class ContentPageComponent implements OnInit {
    .subscribe(values => {
         this.images = values;
     });
+  }
+
+  uploadFile($event: any): void {
+    this.storage.uploadFile($event.target.files[0]);
   }
 }

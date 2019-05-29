@@ -4,15 +4,18 @@
       <app-profile-indicator></app-profile-indicator>
     </div>
 
-    <button type="button" class="img-button my-auto ml-auto border-0" (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    <button type="button" class="img-button my-auto ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
+      [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
       <fa-icon [icon]="faSearch"></fa-icon>
     </button>
 
-    <div id="add-button" class="d-none d-sm-block">a</div>
+    <label for="file-upload" class="hand-cursor my-auto d-none d-sm-block px-2">
+      <fa-icon [icon]="faPlusSquare"></fa-icon>
+    </label>
+    <input id="file-upload" type="file" (change)="uploadFile($event)" />
   </nav>
 
-  <div id="collapseExample" [ngbCollapse]="isCollapsed" class="p-2">
+  <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
     <input type="text" class="form-control" placeholder="Search Users">
   </div>
 </header>
@@ -23,13 +26,9 @@
   </div>
 </main>
 
-<div class="
-  bottom-bar
-  fixed-bottom
-  d-block
-  d-sm-none
-  justify-content-center
-  d-flex
-  p-2">
-  <div id="add-button-mobile">a</div>
+<div class="bottom-bar fixed-bottom d-block d-sm-none justify-content-center d-flex p-2">
+  <label for="file-upload" class="hand-cursor my-auto px-2">
+    <fa-icon [icon]="faPlusSquare"></fa-icon>
+  </label>
+  <input id="file-upload" type="file" (change)="uploadFile($event)" />
 </div>
