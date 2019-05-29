@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-content-page',
@@ -22,9 +22,9 @@ export class ContentPageComponent {
   faSearch = faSearch;
   isSearchCollapsed = true;
 
-  constructor(private storage: StorageService, private router: Router) {
+  constructor(private storage: StorageService, private router: Router, private firebaseAuth: AngularFireAuth) {
 
-    const user = firebase.auth().currentUser;
+    const user = this.firebaseAuth.auth.currentUser;
     if (!user) {
       this.router.navigateByUrl('/login');
     }
