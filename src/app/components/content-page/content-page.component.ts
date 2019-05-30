@@ -35,8 +35,7 @@ export class ContentPageComponent implements OnInit {
     if (!user) {
       this.router.navigateByUrl('/login');
     } else {
-      const email = user.email.replace(/\./g, '_');
-      this.firebaseStorage = this.db.list<Image>(email)
+      this.firebaseStorage = this.db.list<Image>(user.uid + '/files')
       .valueChanges()
       .subscribe(values => {
           this.images = values;
