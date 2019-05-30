@@ -67,6 +67,7 @@ export class ContentPageComponent implements OnInit, OnDestroy {
   displayToast() {
     this.toastr.success('upload complete', 'Success!', {
       closeButton: true,
+      progressBar: true
     });
   }
 }
