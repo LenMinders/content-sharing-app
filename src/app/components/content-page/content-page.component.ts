@@ -40,11 +40,10 @@ export class ContentPageComponent implements OnInit, OnDestroy {
       if (!user) {
         this.router.navigateByUrl('/login');
       } else {
-        const email = user.email.replace(/\./g, '_');
-        this.db.list<Image>(email)
+        this.db.list<Image>(user.uid + '/files')
           .valueChanges()
           .subscribe(values => {
-            this.images = values;
+              this.images = values;
           });
       }
     });
@@ -67,7 +66,6 @@ export class ContentPageComponent implements OnInit, OnDestroy {
 
   displayToast() {
     this.toastr.success('upload complete', 'Success!', {
-      disableTimeOut: true,
       closeButton: true,
     });
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class StorageService {
   uploadFile(file: File) {
     const storageRef = this.firebaseStorage.storage.ref();
 
-    storageRef.child(this.user.email)
+    storageRef.child(this.user.uid)
       .child(Date.now() + '.' + file.name.split('.').pop())
       .put(file)
       .then(snapshot => {
