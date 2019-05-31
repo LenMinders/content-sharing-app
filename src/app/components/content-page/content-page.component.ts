@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPlusSquare, faHome, faUser } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faHome, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -19,10 +18,11 @@ import { User } from 'src/app/models/user';
 export class ContentPageComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
-  isSearchCollapsed = true;
-  user: User;
   faHome = faHome;
   faUser = faUser;
+
+  isSearchCollapsed = true;
+  user: User;
   firebaseStorage: any;
   images: Image[];
 
