@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faHome, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -20,8 +20,9 @@ export class ContentPageComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
   isSearchCollapsed = true;
-
   user: User;
+  faHome = faHome;
+  faUser = faUser;
   firebaseStorage: any;
   images: Image[];
 

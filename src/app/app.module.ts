@@ -14,13 +14,15 @@ import { ContentPageComponent } from './components/content-page/content-page.com
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ProfileIndicatorComponent } from './components/profile-indicator/profile-indicator.component';
 import { environment } from 'src/environments/environment';
+import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentPageComponent,
     LoginPageComponent,
-    ProfileIndicatorComponent
+    ProfileIndicatorComponent,
+    HomeFeedComponent
   ],
   imports: [
     BrowserModule,
