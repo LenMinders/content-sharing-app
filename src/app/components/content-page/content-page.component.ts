@@ -44,6 +44,6 @@ export class ContentPageComponent implements OnInit {
   }
 
   uploadFile($event: any): void {
-    this.storage.uploadFile($event.target.files[0]);
+    this.storage.handleFileUpload($event.target.files[0]);
   }
 }
