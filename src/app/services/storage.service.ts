@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StorageService {
   user: User;
-  isUploadedSource: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private firebaseAuth: AngularFireAuth,
               private firebaseStorage: AngularFireStorage,
@@ -21,16 +20,24 @@ export class StorageService {
   }
 
   uploadFile(file: File) {
-    this.firebaseStorage.storage
+    return this.firebaseStorage.storage
       .ref()
       .child(this.user.uid)
       .child(Date.now() + '.' + file.name.split('.').pop())
-      .put(file)
-      .then(() => {
-        this.toastr.success('upload complete', 'Success!', {
-          closeButton: true,
-          positionClass: 'toast-top-left'
-        });
-      });
+      .put(file);
+  }
+
+  handleFileUpload(file: File) {
+    this.uploadFile(file)
+    .then(() => {
+      this.displaySucccessToast();
+    });
+  }
+
+  displaySucccessToast() {
+    this.toastr.success('upload complete', 'Success!', {
+      closeButton: true,
+      positionClass: 'toast-top-left'
+    });
   }
 }
