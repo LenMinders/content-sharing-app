@@ -9,6 +9,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { StorageService } from 'src/app/services/storage.service';
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-content-page',
@@ -27,7 +28,8 @@ export class ContentPageComponent implements OnInit {
   constructor(private firebaseAuth: AngularFireAuth,
               public db: AngularFireDatabase,
               private storage: StorageService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
@@ -44,6 +46,12 @@ export class ContentPageComponent implements OnInit {
   }
 
   uploadFile($event: any): void {
-    this.storage.uploadFile($event.target.files[0]);
+    this.storage.uploadFile($event.target.files[0])
+    .then( () => {
+      this.toastr.success('upload complete', 'Success!', {
+        closeButton: true,
+        positionClass: 'toast-top-left'
+      });
+    });
   }
 }
