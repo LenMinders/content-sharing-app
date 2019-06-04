@@ -4,6 +4,10 @@ main {
   grid-template-columns: auto auto auto;
 }
 
+.item-img {
+  object-fit: cover;
+}
+
 @media screen and (max-width:400px) {
   main {
     grid-template-columns: auto auto;
