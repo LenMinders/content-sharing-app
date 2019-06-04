@@ -20,11 +20,7 @@
   </div>
 </header>
 
-<main class="container px-1">
-  <div *ngFor="let image of images">
-    <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture">
-  </div>
-</main>
+<router-outlet></router-outlet>
 
 <div class="bottom-bar fixed-bottom d-block d-sm-none justify-content-center d-flex p-2">
   <label for="file-upload" class="hand-cursor my-auto px-2">

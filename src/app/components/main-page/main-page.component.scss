@@ -11,12 +11,6 @@ nav {
   background: $navbar-color;
 }
 
-main {
-  padding: 80px 0px;
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
 .img-button {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -36,16 +30,4 @@ input[type="file"] {
 
 .hand-cursor {
   cursor: pointer;
-}
-
-@media screen and (max-width:400px) {
-  main {
-    grid-template-columns: auto auto;
-  }
-}
-
-@media screen and (max-width:300px) {
-  main {
-    grid-template-columns: auto;
-  }
 }
