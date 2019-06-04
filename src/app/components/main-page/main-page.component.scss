@@ -9,6 +9,18 @@ header {
 
 nav {
   background: $navbar-color;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.nav-link {
+  color: black;
+  padding: 5px;
+}
+
+.active-nav-link {
+  padding-top: 13px;
+  border-bottom: 3px solid black;
 }
 
 .img-button {

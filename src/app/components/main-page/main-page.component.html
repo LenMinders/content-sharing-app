@@ -1,22 +1,26 @@
 <header class="fixed-top d-flex flex-column">
-  <nav class="d-flex flex-grow-1 p-2">
-    <div>
+  <nav class="flex-grow-1">
+    <div class="p-2 my-auto">
       <app-profile-indicator></app-profile-indicator>
     </div>
 
-    <a routerLink="/home">Home</a>
-    <a routerLink="/">Profile</a>
+    <div class="d-flex">
+      <a class="px-3 ml-auto mr-2 nav-link d-flex font-weight-bold" routerLink="/home"><span class="my-auto">Home</span></a>
+      <a class="px-3 mr-auto ml-2 nav-link active-nav-link d-flex font-weight-bold" routerLink="/"><span class="my-auto">Profile</span></a>
+    </div>
 
-    <button type="button" class="img-button my-auto ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
-      [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
-      <fa-icon [icon]="faSearch"></fa-icon>
-    </button>
+    <div class="d-flex p-2 my-auto">
+      <button type="button" class="img-button my-auto ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
+        [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
+        <fa-icon [icon]="faSearch"></fa-icon>
+      </button>
 
-    <label for="file-upload" class="hand-cursor my-auto d-none d-sm-block px-2">
-      <fa-icon [icon]="faPlusSquare"></fa-icon>
-    </label>
+      <label for="file-upload" class="hand-cursor my-auto d-none d-sm-block px-2">
+        <fa-icon [icon]="faPlusSquare"></fa-icon>
+      </label>
 
-    <input id="file-upload" type="file" (change)="uploadFile($event)" />
+      <input id="file-upload" type="file" (change)="uploadFile($event)" />
+    </div>
   </nav>
 
   <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
