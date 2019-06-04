@@ -4,6 +4,9 @@
       <app-profile-indicator></app-profile-indicator>
     </div>
 
+    <a routerLink="/home">Home</a>
+    <a routerLink="/">Profile</a>
+
     <button type="button" class="img-button my-auto ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
       [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
       <fa-icon [icon]="faSearch"></fa-icon>
@@ -12,6 +15,7 @@
     <label for="file-upload" class="hand-cursor my-auto d-none d-sm-block px-2">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
     </label>
+
     <input id="file-upload" type="file" (change)="uploadFile($event)" />
   </nav>
 
