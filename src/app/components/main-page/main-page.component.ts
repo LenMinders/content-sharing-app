@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,12 +17,22 @@ export class MainPageComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
   isSearchCollapsed = true;
+  isAtHomePage = false;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
     private storage: StorageService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {
+
+      router.events.subscribe((event: RouterEvent) => {
+        if (event instanceof NavigationEnd) {
+          this.isAtHomePage = router.url === '/home';
+          // TODO possibly also set website tile here
+        }
+      });
+
+    }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
