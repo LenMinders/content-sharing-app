@@ -15,11 +15,10 @@ nav {
 
 .nav-link {
   color: black;
-  padding: 5px;
 }
 
 .active-nav-link {
-  padding-top: 8px;
+  border-top: 3px solid #00000000;
   border-bottom: 3px solid black;
 }
 
