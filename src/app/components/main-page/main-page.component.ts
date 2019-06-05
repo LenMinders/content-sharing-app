@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastrService } from 'ngx-toastr';
 
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,6 +16,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 export class MainPageComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
+  faUser = faUser;
+  faHome = faHome;
   isSearchCollapsed = true;
   isAtHomePage = false;
 
