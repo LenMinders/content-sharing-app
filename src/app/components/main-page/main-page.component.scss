@@ -20,8 +20,9 @@ nav {
   justify-items: center;
 }
 
-.nav-link-color {
+.nav-link {
   color: $primary-text-color;
+  text-decoration: none;
 }
 
 .nav-link-bottom {
