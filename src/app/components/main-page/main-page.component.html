@@ -11,8 +11,8 @@
         routerLink="/">Profile</a>
     </div>
 
-    <div class="p-2 d-flex align-items-center">
-      <button type="button" class="img-button ml-auto border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
+    <div class="p-2 d-flex align-items-center justify-content-end">
+      <button type="button" class="img-button border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
         [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
