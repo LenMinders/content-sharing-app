@@ -5,9 +5,9 @@
     </div>
 
     <div class="d-flex justify-content-center">
-      <a class="nav-link mr-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
+      <a class="nav-link-style mr-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
         [class.active-nav-link]="isAtHomePage" routerLink="/home">Home</a>
-      <a class="nav-link ml-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
+      <a class="nav-link-style ml-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
         [class.active-nav-link]="!isAtHomePage" routerLink="/">Profile</a>
     </div>
 
@@ -34,7 +34,7 @@
 
 <div class="bottom-bar fixed-bottom p-2 d-sm-none d-grid">
   <div>
-    <a routerLink="/home" class="nav-link" [class.active-nav-link-bottom]="isAtHomePage">
+    <a routerLink="/home" class="nav-link-style" [class.active-nav-link-bottom]="isAtHomePage">
       <fa-icon [icon]="faHome"></fa-icon>
     </a>
   </div>
@@ -47,7 +47,7 @@
   </div>
 
   <div>
-    <a routerLink="/" class="nav-link" [class.active-nav-link-bottom]="!isAtHomePage">
+    <a routerLink="/" class="nav-link-style" [class.active-nav-link-bottom]="!isAtHomePage">
       <fa-icon [icon]="faUser"></fa-icon>
     </a>
   </div>
