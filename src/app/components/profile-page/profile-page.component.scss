@@ -1,0 +1,21 @@
+main {
+  padding: 80px 0px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.item-img {
+  object-fit: cover;
+}
+
+@media screen and (max-width:400px) {
+  main {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width:300px) {
+  main {
+    grid-template-columns: auto;
+  }
+}

@@ -1,11 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContentPageComponent } from './components/content-page/content-page.component';
+
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 
 const routes: Routes = [{
   path: '',
-  component: ContentPageComponent
+  component: MainPageComponent,
+  children: [
+    {
+      path: '',
+      component: ProfilePageComponent
+    },
+    {
+      path: 'home',
+      component: HomeFeedComponent
+    }
+  ]
 }, {
   path: 'login',
   component: LoginPageComponent

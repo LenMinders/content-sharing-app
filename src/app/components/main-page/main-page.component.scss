@@ -1,0 +1,56 @@
+$navbar-color: #fafafa;
+$navbar-border-color: #bdbdbd;
+$default-border: 1px solid $navbar-border-color;
+$primary-text-color: rgba(0, 0, 0, 0.747);
+
+header {
+  background: $navbar-color;
+  border-bottom: $default-border;
+}
+
+nav {
+  background: $navbar-color;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bottom-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.nav-link-style {
+  color: $primary-text-color;
+  text-decoration: none;
+}
+
+.nav-link-bottom {
+  color: $primary-text-color;
+}
+
+.active-nav-link {
+  border-top: 3px solid #00000000;
+  border-bottom: 3px solid $primary-text-color;
+}
+
+.active-nav-link-bottom {
+  color: #2196f3;
+}
+
+.img-button {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.bottom-bar {
+  background: $navbar-color;
+  border-top: $default-border;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
