@@ -63,17 +63,17 @@ workflows:
     -deploy:
         jobs:
         - build
-        -prod-build:
-          - requires:
-                - build
-        - deploy:
+        - prod-build:
             requires:
-                - prod-build
+                - build
             filters:
                 bracnhes:
                     only: 
                       - develop
                       - master
+        - deploy:
+            requires:
+                - prod-build
             filters:
                 branches:
                     only: master
