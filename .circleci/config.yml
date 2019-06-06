@@ -67,7 +67,7 @@ workflows:
             requires:
                 - build
             filters:
-                bracnhes:
+                branches:
                     only: 
                       - develop
                       - master
