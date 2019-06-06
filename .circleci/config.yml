@@ -33,7 +33,11 @@ jobs:
                     - firebase.json
                     - .firebaserc
     prod-build: 
-            - checkout:
+        working_directory: ~/content-sharing-app
+        docker:
+            - image: circleci/node:8.9.3-browsers
+        steps:
+            - checkout
             - run:
                 name: Building
                 command: npm run build-prod
