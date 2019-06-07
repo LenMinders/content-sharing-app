@@ -2,9 +2,12 @@ main {
   padding: 100px 0px;
 }
 
-#photo-background {
-  width: 300px;
+.photo-background-height {
   height: 300px;
+}
+
+.photo-background {
+  width: 300px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; 
@@ -15,7 +18,7 @@ textarea {
 }
 
 @media screen and (max-width:350px) {
-  #photo-background  {
+  .photo-background  {
     width: 100%;
   }
 }

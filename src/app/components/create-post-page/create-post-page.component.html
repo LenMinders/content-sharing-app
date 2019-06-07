@@ -1,14 +1,8 @@
 <main class="container px-3 d-flex flex-column flex-grow-1">
-  <div id="photo-background"
-    class="d-flex align-items-end mx-auto mb-3"
-    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'}">
-    <button class="btn mx-auto my-3" [ngClass]="{
-          'position-relative': photoSrc,
-          'btn-outline-light': photoSrc,
-          'mb-3': !photoSrc,
-          'btn-primary': !photoSrc
-        }">
-      {{photoButtonText}}
+  <div class="photo-background d-flex align-items-end mx-auto mb-3" [ngClass]="photoSrc ? 'photo-background-height' : null"
+    [ngStyle]="photoSrc ? {'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'} : null">
+    <button class="btn mx-auto my-3" [ngClass]="photoSrc ? 'position-relative btn-outline-light' : 'mb-3 btn-primary'">
+      {{ photoSrc ? 'Choose Again' : 'Choose Image'}}
     </button>
   </div>
   <textarea class="form-control mb-5" rows="3" placeholder="Description..."></textarea>

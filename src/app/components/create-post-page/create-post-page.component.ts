@@ -9,8 +9,6 @@ export class CreatePostPageComponent {
   // photoSrc: string;
   // photoSrc = '../../../assets/images/forrest-portrait.jpeg';
   photoSrc = '../../../assets/images/white-wall.jpg';
-  // photoButtonText = 'Choose Image';
-  photoButtonText = 'Choose Again';
 
   constructor() { }
 
