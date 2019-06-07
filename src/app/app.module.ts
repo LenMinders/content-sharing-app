@@ -18,6 +18,7 @@ import { ProfileIndicatorComponent } from './components/profile-indicator/profil
 import { environment } from 'src/environments/environment';
 import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { SingleImageComponent } from './components/single-image/single-image.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     LoginPageComponent,
     ProfileIndicatorComponent,
     HomeFeedComponent,
-    MainPageComponent
+    MainPageComponent,
+    SingleImageComponent
   ],
   imports: [
     BrowserModule,
