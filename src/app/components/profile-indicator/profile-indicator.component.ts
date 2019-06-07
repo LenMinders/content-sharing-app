@@ -12,7 +12,6 @@ export class ProfileIndicatorComponent implements OnInit {
   faUserCircle = faUserCircle;
   user: User;
 
-
   constructor(private firebaseAuth: AngularFireAuth) { }
 
   ngOnInit() {
