@@ -20,6 +20,7 @@ export class MainPageComponent implements OnInit {
   faHome = faHome;
   isSearchCollapsed = true;
   isAtHomePage = false;
+  isAtProfilePage = false;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -30,6 +31,7 @@ export class MainPageComponent implements OnInit {
       router.events.subscribe((event: RouterEvent) => {
         if (event instanceof NavigationEnd) {
           this.isAtHomePage = router.url === '/home';
+          this.isAtProfilePage = router.url === '/';
           // TODO possibly also set website tile here
         }
       });

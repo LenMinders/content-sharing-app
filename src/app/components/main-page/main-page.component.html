@@ -8,7 +8,7 @@
       <a class="nav-link-style mr-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
         [class.active-nav-link]="isAtHomePage" routerLink="/home">Home</a>
       <a class="nav-link-style ml-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
-        [class.active-nav-link]="!isAtHomePage" routerLink="/">Profile</a>
+        [class.active-nav-link]="isAtProfilePage" routerLink="/">Profile</a>
     </div>
 
     <div class="p-2 d-flex align-items-center justify-content-end">
@@ -49,7 +49,7 @@
   </div>
 
   <div>
-    <a routerLink="/" class="nav-link-style" [class.active-nav-link-bottom]="!isAtHomePage">
+    <a routerLink="/" class="nav-link-style" [class.active-nav-link-bottom]="isAtProfilePage">
       <fa-icon [icon]="faUser"></fa-icon>
     </a>
   </div>
