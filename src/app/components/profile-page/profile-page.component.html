@@ -1,6 +1,8 @@
 <main class="container px-1">
   <div *ngFor="let image of images">
-    <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture" routerLink="image">
+    <a [routerLink]="['image']" [queryParams]="{imageid: image.id, imageUrl: image.imageUrl }"
+      queryParamsHandling="merge">
+      <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture">
+    </a>
   </div>
 </main>
-

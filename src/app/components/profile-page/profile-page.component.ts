@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
 
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -29,4 +30,5 @@ export class ProfilePageComponent implements OnInit {
         });
     });
   }
+
 }
