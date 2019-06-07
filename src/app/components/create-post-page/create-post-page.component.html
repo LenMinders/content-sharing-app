@@ -1,14 +1,16 @@
 <main class="container px-3 d-flex flex-column flex-grow-1">
-  <div class="d-flex flex-column">
-    <img *ngIf="photoSrc" [src]="photoSrc" alt="photo" class="position-relative mx-auto">
-    <button id="choose-button" class="btn btn-primary mx-auto"
-      [ngClass]="{
-        'position-relative': photoSrc,
-        'btn-outline-light': photoSrc,
-        'mb-3': !photoSrc,
-        'btn-primary': !photoSrc
-      }">
-      Choose Image
+  <div id="photo-background"
+    class="d-flex align-items-end mx-auto mb-3"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'}"
+    >
+    <!-- <img *ngIf="photoSrc" [src]="photoSrc" alt="photo" class="position-relative mx-auto"> -->
+    <button class="btn mx-auto my-3" [ngClass]="{
+          'position-relative': photoSrc,
+          'btn-outline-light': photoSrc,
+          'mb-3': !photoSrc,
+          'btn-primary': !photoSrc
+        }">
+      {{photoButtonText}}
     </button>
   </div>
   <textarea class="form-control mb-5" rows="3" placeholder="Description..."></textarea>

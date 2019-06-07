@@ -6,8 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-post-page.component.scss']
 })
 export class CreatePostPageComponent {
-  photoSrc: string;
+  // photoSrc: string;
   // photoSrc = '../../../assets/images/forrest-portrait.jpeg';
+  photoSrc = '../../../assets/images/white-wall.jpg';
+  // photoButtonText = 'Choose Image';
+  photoButtonText = 'Choose Again';
 
   constructor() { }
 
