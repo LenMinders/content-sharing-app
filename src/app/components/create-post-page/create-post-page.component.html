@@ -1,9 +1,7 @@
 <main class="container px-3 d-flex flex-column flex-grow-1">
   <div id="photo-background"
     class="d-flex align-items-end mx-auto mb-3"
-    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'}"
-    >
-    <!-- <img *ngIf="photoSrc" [src]="photoSrc" alt="photo" class="position-relative mx-auto"> -->
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'}">
     <button class="btn mx-auto my-3" [ngClass]="{
           'position-relative': photoSrc,
           'btn-outline-light': photoSrc,
