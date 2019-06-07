@@ -11,6 +11,6 @@
     <input id="file-upload" type="file" (change)="loadFile($event)"
       accept="image/gif, image/jpeg, image/svg+xml, image/jpg, image/png, image/bmp, image/ico, image/webp" />
   </div>
-  <textarea class="form-control mb-5" rows="3" placeholder="Description..."></textarea>
-  <button type="button" class="btn btn-primary ml-auto" [disabled]=!photoSrc>Post</button>
+  <textarea class="form-control mb-5" rows="3" placeholder="Description..." [(ngModel)]="description"></textarea>
+  <button type="button" class="btn btn-primary ml-auto" [disabled]=!photoSrc (click)="makePost()">Post</button>
 </main>
