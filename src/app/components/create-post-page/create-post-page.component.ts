@@ -6,10 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-post-page.component.scss']
 })
 export class CreatePostPageComponent {
-  // photoSrc: string;
+  photoSrc: any;
   // photoSrc = '../../../assets/images/forrest-portrait.jpeg';
-  photoSrc = '../../../assets/images/white-wall.jpg';
+  // photoSrc = '../../../assets/images/white-wall.jpg';
 
   constructor() { }
+
+  loadFile($event: any): void {
+    const file = $event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.photoSrc = reader.result;
+    reader.readAsDataURL(file);
+  }
 
 }

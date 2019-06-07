@@ -17,6 +17,14 @@ textarea {
   height: 300px;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
 @media screen and (max-width:350px) {
   .photo-background  {
     width: 100%;
