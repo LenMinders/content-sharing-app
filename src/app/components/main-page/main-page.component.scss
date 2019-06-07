@@ -10,6 +10,7 @@ header {
 
 nav {
   background: $navbar-color;
+  height: 65px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }

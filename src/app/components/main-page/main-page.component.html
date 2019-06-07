@@ -17,12 +17,9 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
 
-      <label for="file-upload" class="hand-cursor d-none d-sm-block px-2 m-0">
+      <a routerLink="/create-post" class="px-2 nav-link-style">
         <fa-icon [icon]="faPlusSquare"></fa-icon>
-      </label>
-
-      <input id="file-upload" type="file" (change)="uploadFile($event)"
-        accept="image/gif, image/jpeg, image/svg+xml, image/jpg, image/png, image/bmp, image/ico, image/webp" />
+      </a>
     </div>
   </nav>
 
@@ -41,11 +38,9 @@
   </div>
 
   <div>
-    <label for="file-upload" class="hand-cursor my-auto px-2">
+    <a routerLink="/create-post" class="px-2 nav-link-style">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
-    </label>
-    <input id="file-upload" type="file" (change)="uploadFile($event)"
-      accept="image/gif, image/jpeg, image/svg+xml, image/jpg, image/png, image/bmp, image/ico, image/webp" />
+    </a>
   </div>
 
   <div>
