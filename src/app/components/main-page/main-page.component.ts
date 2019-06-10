@@ -46,14 +46,4 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  uploadFile($event: any): void {
-    this.storage.uploadFile($event.target.files[0], Date.now().toString())
-      .then(() => {
-        this.toastr.success('upload complete', 'Success!', {
-          closeButton: true,
-          positionClass: 'toast-top-left'
-        });
-      });
-  }
-
 }
