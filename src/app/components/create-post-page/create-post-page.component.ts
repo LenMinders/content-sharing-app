@@ -15,9 +15,10 @@ export class CreatePostPageComponent implements OnInit {
   photoFile: File;
   description: string;
   user: User;
+  isMakingPost = false;
 
   constructor(
-    private storage: StorageService, 
+    private storage: StorageService,
     private firebase: AngularFireDatabase,
     private firebaseAuth: AngularFireAuth) { }
 
@@ -35,12 +36,19 @@ export class CreatePostPageComponent implements OnInit {
   }
 
   makePost(): void {
+    this.isMakingPost = true;
     const fileId = Date.now().toString();
     this.storage.uploadFile(this.photoFile, fileId)
       .then(() => {
         this.firebase.database.ref(this.user.uid + '/files/' + fileId).update({
           description: this.description
-        });
+        })
+          .then(() => {
+            this.isMakingPost = false;
+            this.photoFile = null;
+            this.photoSrc = '';
+            this.description = '';
+          });
       });
   }
 }
