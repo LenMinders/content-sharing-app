@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'firebase';
 
 import { faHeart, faComment, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
@@ -14,16 +16,22 @@ export class SingleImageComponent implements OnInit {
   faComment = faComment;
   faUserCircle = faUserCircle;
 
+  user: User;
+
   activatedRoute: any;
 
   imageUrl: string;
   displayPhoto: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private firebaseAuth: AngularFireAuth, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.imageUrl = this.route.snapshot.queryParamMap.get('imageUrl');
     this.displayPhoto = this.imageUrl;
+
+    this.firebaseAuth.user.subscribe(
+      user => this.user = user
+    );
   }
 }
 
