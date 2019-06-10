@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
+import { SingleImageComponent } from './components/single-image/single-image.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CreatePostPageComponent } from './components/create-post-page/create-po
     ProfileIndicatorComponent,
     HomeFeedComponent,
     MainPageComponent,
-    CreatePostPageComponent
+    CreatePostPageComponent,
+    SingleImageComponent
   ],
   imports: [
     BrowserModule,

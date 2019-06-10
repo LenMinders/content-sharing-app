@@ -1,0 +1,25 @@
+<main class="container">
+  <div class="d-flex flex-column mb-3">
+    <img class="align-self-center" id="image-container" [src]="displayPhoto" download="displayPhoto" />
+  </div>
+
+  <div class="d-flex mb-3 align-items-center" *ngIf="user">
+    <fa-icon *ngIf="user.photoURL === 'undefined'" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
+    <img *ngIf="user.photoURL !== 'undefined'" [src]="user.photoURL" alt="profile picture"
+      class="rounded-circle image-size mr-2 my-auto">
+    <div class="font-weight-bold">{{user.displayName}}</div>
+  </div>
+
+  <div>
+    <p>
+      Tags / Description here..
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+      officia deserunt mollit anim id est laborum.
+    </p>
+  </div>
+</main>
