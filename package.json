@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "test-prod": "ng test --watch=false",
     "build-prod": "ng build --prod",
-    "firebase-deploy": "firebase deploy",
+    "firebase-deploy": "firebase deploy --only hosting",
     "coverage-report": "ng test --code-coverage --watch=true"
   },
   "private": true,
