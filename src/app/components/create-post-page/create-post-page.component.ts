@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/services/storage.service';
 import { User } from 'src/app/models/user';
 
@@ -13,14 +14,15 @@ import { User } from 'src/app/models/user';
 export class CreatePostPageComponent implements OnInit {
   photoSrc: any;
   photoFile: File;
-  description: string;
+  description = '';
   user: User;
   isMakingPost = false;
 
   constructor(
     private storage: StorageService,
     private firebase: AngularFireDatabase,
-    private firebaseAuth: AngularFireAuth) { }
+    private firebaseAuth: AngularFireAuth,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.firebaseAuth.user.subscribe(
@@ -48,6 +50,11 @@ export class CreatePostPageComponent implements OnInit {
             this.photoFile = null;
             this.photoSrc = '';
             this.description = '';
+
+            this.toastr.success('Upload Complete', 'Success!', {
+              closeButton: true,
+              positionClass: 'toast-top-left'
+            });
           });
       });
   }

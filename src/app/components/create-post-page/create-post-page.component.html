@@ -3,7 +3,7 @@
     [ngClass]="photoSrc ? 'photo-background-height' : null"
     [ngStyle]="photoSrc ? {'background-image': 'linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.226)), url('+photoSrc+')'} : null">
 
-    <label for="file-upload" class="hand-cursor d-none d-sm-block px-2 m-0 btn mx-auto my-3"
+    <label for="file-upload" class="hand-cursor d-block px-2 m-0 btn mx-auto my-3"
       [ngClass]="photoSrc ? 'position-relative btn-outline-light' : 'mb-3 btn-primary'">
       {{ photoSrc ? 'Choose Again' : 'Choose Image'}}
     </label>
