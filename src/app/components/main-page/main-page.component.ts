@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { StorageService } from 'src/app/services/storage.service';
-import { ToastrService } from 'ngx-toastr';
-
 import { faPlusSquare, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,9 +21,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private storage: StorageService,
-    private router: Router,
-    private toastr: ToastrService) {
+    private router: Router) {
 
       router.events.subscribe((event: RouterEvent) => {
         if (event instanceof NavigationEnd) {
