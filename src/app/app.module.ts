@@ -5,6 +5,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -18,6 +19,7 @@ import { ProfileIndicatorComponent } from './components/profile-indicator/profil
 import { environment } from 'src/environments/environment';
 import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { SingleImageComponent } from './components/single-image/single-image.com
     ProfileIndicatorComponent,
     HomeFeedComponent,
     MainPageComponent,
+    CreatePostPageComponent,
     SingleImageComponent
   ],
   imports: [
@@ -40,7 +43,8 @@ import { SingleImageComponent } from './components/single-image/single-image.com
     AngularFireDatabaseModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   exports: [
     BrowserModule,

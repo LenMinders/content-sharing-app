@@ -17,11 +17,11 @@ export class StorageService {
     );
   }
 
-  uploadFile(file: File) {
+  uploadFile(file: File, fileId: string) {
     return this.firebaseStorage.storage
       .ref()
       .child(this.user.uid)
-      .child(Date.now() + '.' + file.name.split('.').pop())
+      .child(fileId + '.' + file.name.split('.').pop())
       .put(file);
   }
 }

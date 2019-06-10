@@ -8,7 +8,7 @@
       <a class="nav-link-style mr-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
         [class.active-nav-link]="isAtHomePage" routerLink="/home">Home</a>
       <a class="nav-link-style ml-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
-        [class.active-nav-link]="!isAtHomePage" routerLink="/">Profile</a>
+        [class.active-nav-link]="isAtProfilePage" routerLink="/">Profile</a>
     </div>
 
     <div class="p-2 d-flex align-items-center justify-content-end">
@@ -17,12 +17,9 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
 
-      <label for="file-upload" class="hand-cursor d-none d-sm-block px-2 m-0">
+      <a routerLink="/create-post" class="px-2 nav-link-style">
         <fa-icon [icon]="faPlusSquare"></fa-icon>
-      </label>
-
-      <input id="file-upload" type="file" (change)="uploadFile($event)"
-        accept="image/gif, image/jpeg, image/svg+xml, image/jpg, image/png, image/bmp, image/ico, image/webp" />
+      </a>
     </div>
   </nav>
 
@@ -41,15 +38,13 @@
   </div>
 
   <div>
-    <label for="file-upload" class="hand-cursor my-auto px-2">
+    <a routerLink="/create-post" class="px-2 nav-link-style">
       <fa-icon [icon]="faPlusSquare"></fa-icon>
-    </label>
-    <input id="file-upload" type="file" (change)="uploadFile($event)"
-      accept="image/gif, image/jpeg, image/svg+xml, image/jpg, image/png, image/bmp, image/ico, image/webp" />
+    </a>
   </div>
 
   <div>
-    <a routerLink="/" class="nav-link-style" [class.active-nav-link-bottom]="!isAtHomePage">
+    <a routerLink="/" class="nav-link-style" [class.active-nav-link-bottom]="isAtProfilePage">
       <fa-icon [icon]="faUser"></fa-icon>
     </a>
   </div>

@@ -10,6 +10,7 @@ header {
 
 nav {
   background: $navbar-color;
+  height: 65px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -35,7 +36,7 @@ nav {
 }
 
 .active-nav-link-bottom {
-  color: #2196f3;
+  color: #007bff;
 }
 
 .img-button {

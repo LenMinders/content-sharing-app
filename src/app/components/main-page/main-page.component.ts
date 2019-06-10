@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { StorageService } from 'src/app/services/storage.service';
-import { ToastrService } from 'ngx-toastr';
-
 import { faPlusSquare, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,16 +17,16 @@ export class MainPageComponent implements OnInit {
   faHome = faHome;
   isSearchCollapsed = true;
   isAtHomePage = false;
+  isAtProfilePage = false;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private storage: StorageService,
-    private router: Router,
-    private toastr: ToastrService) {
+    private router: Router) {
 
       router.events.subscribe((event: RouterEvent) => {
         if (event instanceof NavigationEnd) {
           this.isAtHomePage = router.url === '/home';
+          this.isAtProfilePage = router.url === '/';
           // TODO possibly also set website tile here
         }
       });
@@ -42,16 +39,6 @@ export class MainPageComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }
     });
-  }
-
-  uploadFile($event: any): void {
-    this.storage.uploadFile($event.target.files[0])
-      .then(() => {
-        this.toastr.success('upload complete', 'Success!', {
-          closeButton: true,
-          positionClass: 'toast-top-left'
-        });
-      });
   }
 
 }
