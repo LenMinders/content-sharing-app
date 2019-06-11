@@ -25,13 +25,6 @@ jobs:
             - run:
                 name: Linting
                 command: npm run lint
-            - save_cache:
-                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-                paths:
-                    - dist
-                    - package.json
-                    - firebase.json
-                    - .firebaserc
     prod-build: 
         working_directory: ~/content-sharing-app
         docker:
@@ -46,6 +39,13 @@ jobs:
             - run:
                 name: Building
                 command: npm run build-prod
+            - save_cache:
+                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+                paths:
+                    - dist
+                    - package.json
+                    - firebase.json
+                    - .firebaserc
     deploy:
         docker:
             - image: circleci/node:chakracore-8.11-browsers-legacy
