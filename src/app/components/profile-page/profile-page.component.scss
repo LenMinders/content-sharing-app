@@ -8,6 +8,11 @@ main {
   object-fit: cover;
 }
 
+.img-container {
+  max-height: 600px;
+  overflow: hidden;
+}
+
 @media screen and (max-width:400px) {
   main {
     grid-template-columns: auto auto;
