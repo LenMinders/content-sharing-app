@@ -12,6 +12,10 @@ main {
     grid-template-columns: repeat(2, 1fr);
 }
 
+#post-dropdown::after {
+    display:none;
+}
+
 .image-size {
     width: 30px;
     height: 30px;

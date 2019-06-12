@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 import { faPlusSquare, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { EventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-main-page',
@@ -21,7 +22,8 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private firebaseAuth: AngularFireAuth,
-    private router: Router) {
+    private router: Router,
+    private eventsService: EventsService) {
 
       router.events.subscribe((event: RouterEvent) => {
         if (event instanceof NavigationEnd) {
@@ -38,6 +40,16 @@ export class MainPageComponent implements OnInit {
       if (!user) {
         this.router.navigateByUrl('/login');
       }
+    });
+
+    this.eventsService.currentPhotosToDelete.subscribe(x => {
+      this.deletePhotos(x);
+    });
+  }
+
+  deletePhotos(photoIds: string[]) {
+    photoIds.forEach(photoId => {
+      console.log('deleting photo: ' + photoId);
     });
   }
 

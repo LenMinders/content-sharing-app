@@ -8,6 +8,17 @@
     <img *ngIf="user.photoURL !== 'undefined'" [src]="user.photoURL" alt="profile picture"
       class="rounded-circle image-size mr-2 my-auto">
     <div class="font-weight-bold">{{user.displayName}}</div>
+    
+    <div ngbDropdown class="d-inline-block ml-auto">
+      <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
+        <fa-icon [icon]="faEllipsisV"></fa-icon>
+      </button>
+
+      <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
+        <button ngbDropdownItem (click)="onDeletePostClicked()">Delete Post</button>
+        <button ngbDropdownItem>Photo Details</button>
+      </div>
+    </div>
   </div>
 
   <div>
