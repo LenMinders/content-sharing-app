@@ -58,8 +58,6 @@ export class MainPageComponent implements OnInit {
 
   deletePhotos(photoIds: string[]) {
     photoIds.forEach(photoId => {
-      console.log('deleting photo: ' + photoId);
-
       this.firebase.database.ref(this.user.uid + '/files/' + photoId).remove();
     });
   }
