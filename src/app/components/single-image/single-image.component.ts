@@ -22,7 +22,7 @@ export class SingleImageComponent implements OnInit {
   activatedRoute: any;
 
   imageUrl: string;
-  imageId: string;
+  imageName: string;
   displayPhoto: string;
 
   constructor(
@@ -32,7 +32,7 @@ export class SingleImageComponent implements OnInit {
 
   ngOnInit() {
     this.imageUrl = this.route.snapshot.queryParamMap.get('imageUrl');
-    this.imageId = this.route.snapshot.queryParamMap.get('imageid');
+    this.imageName = this.route.snapshot.queryParamMap.get('imageName');
     this.displayPhoto = this.imageUrl;
 
     this.firebaseAuth.user.subscribe(
@@ -41,7 +41,7 @@ export class SingleImageComponent implements OnInit {
   }
 
   onDeletePostClicked(): void {
-    this.eventsService.deletePhotos([this.imageId]);
+    this.eventsService.deletePhotos([this.imageName]);
   }
 }
 

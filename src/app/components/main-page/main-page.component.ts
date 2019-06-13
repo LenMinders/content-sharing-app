@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { faPlusSquare, faUser, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
-import { faPlusSquare, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { EventsService } from 'src/app/services/events.service';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -28,17 +28,18 @@ export class MainPageComponent implements OnInit {
     private firebaseAuth: AngularFireAuth,
     private router: Router,
     private eventsService: EventsService,
-    private firebase: AngularFireDatabase) {
+    private toastr: ToastrService,
+    private firebaseStorage: AngularFireStorage) {
 
-      router.events.subscribe((event: RouterEvent) => {
-        if (event instanceof NavigationEnd) {
-          this.isAtHomePage = router.url === '/home';
-          this.isAtProfilePage = router.url === '/';
-          // TODO possibly also set website tile here
-        }
-      });
+    router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof NavigationEnd) {
+        this.isAtHomePage = router.url === '/home';
+        this.isAtProfilePage = router.url === '/';
+        // TODO possibly also set website tile here
+      }
+    });
 
-    }
+  }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
@@ -56,9 +57,21 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  deletePhotos(photoIds: string[]) {
-    photoIds.forEach(photoId => {
-      this.firebase.database.ref(this.user.uid + '/files/' + photoId).remove();
+  deletePhotos(fileNames: string[]) {
+    fileNames.forEach(fileName => {
+      this.firebaseStorage.storage.ref().child(this.user.uid + '/' + fileName).delete()
+        .then(() => {
+          // File deleted successfully
+          this.toastr.success('Post deleted', 'Success!', {
+            closeButton: true,
+            positionClass: 'toast-top-left'
+          });
+
+          this.router.navigateByUrl('/');
+        }).catch((error) => {
+          // TODO show that an error occured
+          console.log('Error. File not deleted.');
+        });
     });
   }
 
