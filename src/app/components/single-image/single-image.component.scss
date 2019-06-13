@@ -1,5 +1,6 @@
 main {
     padding: 80px 50px;
+    width: 600px;
 }
 
 #image-container {
@@ -11,15 +12,19 @@ main {
     grid-template-columns: repeat(2, 1fr);
 }
 
+#post-dropdown::after {
+    display:none;
+}
+
 .image-size {
     width: 30px;
     height: 30px;
     object-fit: cover;
 }
 
-@media screen and (min-width:600px) {
+@media screen and (max-width:700px) {
 
-    #image-container {
-        width: 400px;
+    main {
+        width: 100%;
     }
 }

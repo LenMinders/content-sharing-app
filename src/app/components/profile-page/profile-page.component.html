@@ -1,12 +1,9 @@
 <main class="container px-1">
   <ng-container *ngIf="!removing else removableItems">
-    <div class='image-container' *ngFor="let image of images">
-      <a [routerLink]="['image']" [queryParams]="{imageid: image.id, imageUrl: image.imageUrl }"
+    <div *ngFor="let image of images" class="img-container m-1">
+      <a [routerLink]="['image']" [queryParams]="{imageName: image.imageName, imageUrl: image.imageUrl }"
         queryParamsHandling="merge">
-        <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture">
-        <a class="download-link fa-3x" [href]="image.imageUrl">
-          <fa-icon [icon]="faTrash"></fa-icon>
-        </a>
+        <img class="item-img w-100 h-100" [src]="image.imageUrl" alt="Picture">
       </a>
     </div>
   </ng-container>
@@ -17,5 +14,4 @@
     <a class="download-link fa-3x" [href]="image.imageUrl">
       <fa-icon [icon]="faTrash"></fa-icon>
     </a>
-  </div>
 </ng-template>
