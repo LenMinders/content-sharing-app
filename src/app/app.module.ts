@@ -21,6 +21,7 @@ import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SingleImageComponent } from './components/single-image/single-image.com
     HomeFeedComponent,
     MainPageComponent,
     CreatePostPageComponent,
-    SingleImageComponent
+    SingleImageComponent,
+    ConfirmDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { SingleImageComponent } from './components/single-image/single-image.com
     NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmDeleteModalComponent]
 })
 export class AppModule { }

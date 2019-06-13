@@ -1,10 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from 'firebase';
+import { ActivatedRoute } from '@angular/router';
 
 import { faHeart, faComment, faUserCircle, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { EventsService } from 'src/app/services/events.service';
+import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-single-image',
@@ -18,9 +21,7 @@ export class SingleImageComponent implements OnInit {
   faEllipsisV = faEllipsisV;
 
   user: User;
-
   activatedRoute: any;
-
   imageUrl: string;
   imageName: string;
   displayPhoto: string;
@@ -28,7 +29,8 @@ export class SingleImageComponent implements OnInit {
   constructor(
     private firebaseAuth: AngularFireAuth,
     private route: ActivatedRoute,
-    private eventsService: EventsService) { }
+    private eventsService: EventsService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.imageUrl = this.route.snapshot.queryParamMap.get('imageUrl');
@@ -40,8 +42,17 @@ export class SingleImageComponent implements OnInit {
     );
   }
 
-  onDeletePostClicked(): void {
+  deletePost(): void {
     this.eventsService.deletePhotos([this.imageName]);
+  }
+
+  openConfirmModal() {
+    this.modalService.open(ConfirmDeleteModalComponent).result
+      .then((result) => {
+        this.deletePost();
+      }, (reason) => {
+        // modal closed
+      });
   }
 }
 
