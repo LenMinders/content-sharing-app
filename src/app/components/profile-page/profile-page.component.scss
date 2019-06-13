@@ -4,8 +4,39 @@ main {
   grid-template-columns: auto auto auto;
 }
 
+.image-container {
+  position: relative;
+}
+
 .item-img {
   object-fit: cover;
+}
+
+.image-container .item-img:hover {
+  opacity: 0.5
+}
+
+.image-container:hover .download-link {
+  display: block;
+  opacity: 1; /* added */
+  top: 0; /* added */
+  z-index: 500;
+}
+
+.image-container:hover .download-link fa-icon {
+  top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.image-container .download-link {
+  display: none;
+  top: -100%;
+  opacity: 0;
+  text-align: center;
+  color: inherit;
 }
 
 @media screen and (max-width:400px) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
 
@@ -13,6 +15,8 @@ import { User } from 'src/app/models/user';
 })
 
 export class ProfilePageComponent implements OnInit {
+  faTrash = faTrash;
+  removing = true;
   user: User;
   images: Image[];
 
@@ -30,5 +34,4 @@ export class ProfilePageComponent implements OnInit {
         });
     });
   }
-
 }
