@@ -6,6 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
+import { EventsService } from 'src/app/services/events.service';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class ProfilePageComponent implements OnInit {
   removing = true;
   user: User;
   images: Image[];
+  selectedImages: string[];
 
   constructor(
-    private firebaseAuth: AngularFireAuth,
     public db: AngularFireDatabase,
+    private firebaseAuth: AngularFireAuth,
+    private eventService: EventsService
   ) { }
 
   ngOnInit() {
@@ -33,5 +36,24 @@ export class ProfilePageComponent implements OnInit {
           this.images = values;
         });
     });
+    this.selectedImages = [];
+  }
+
+  selectFile(imageName: any) {
+    if (this.selectedImages.includes(imageName)) {
+      this.deSelectFile(imageName);
+    } else {
+      this.selectedImages.push(imageName);
+    }
+  }
+
+  deSelectFile(imageName: string) {
+    this.selectedImages = this.selectedImages.filter((value) => {
+      return value !== imageName;
+    });
+  }
+
+  deletePhotos() {
+    this.eventService.deletePhotos(this.selectedImages);
   }
 }

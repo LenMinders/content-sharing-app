@@ -12,23 +12,8 @@ main {
   object-fit: cover;
 }
 
-.image-container .item-img:hover {
+.fade-image {
   opacity: 0.5
-}
-
-.image-container:hover .download-link {
-  display: block;
-  opacity: 1; /* added */
-  top: 0; /* added */
-  z-index: 500;
-}
-
-.image-container:hover .download-link fa-icon {
-  top: 50%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
 }
 
 .image-container .download-link {
@@ -38,6 +23,22 @@ main {
   text-align: center;
   color: inherit;
 }
+
+.display-icon {
+  display: block !important;
+  opacity: 1 !important; /* added */
+  top: 0 !important; /* added */
+  z-index: 500;
+}
+
+.position-icon {
+  top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 
 @media screen and (max-width:400px) {
   main {

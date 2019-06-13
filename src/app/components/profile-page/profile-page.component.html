@@ -9,9 +9,22 @@
   </ng-container>
 </main>
 <ng-template #removableItems>
-  <div class='image-container' *ngFor="let image of images">
-    <img class="item-img w-100 h-100 p-1" [src]="image.imageUrl" alt="Picture">
-    <a class="download-link fa-3x" [href]="image.imageUrl">
-      <fa-icon [icon]="faTrash"></fa-icon>
+  <div 
+   class='image-container'
+   *ngFor="let image of images" 
+   (click)="selectFile(image.imageName)">
+    <img 
+     [ngClass]="selectedImages.includes(image.imageName) ? 'fade-image': ''"
+     class="item-img w-100 h-100 p-1" [src]="image.imageUrl" 
+     alt="Picture">
+    <a 
+     [ngClass]="selectedImages.includes(image.imageName) ? 'display-icon': ''" 
+     class="download-link fa-3x" 
+     [href]="image.imageUrl" >
+      <fa-icon 
+       [ngClass]="selectedImages.includes(image.imageName) ? 'position-icon': ''" 
+       [icon]="faTrash">
+      </fa-icon>
     </a>
+  </div>
 </ng-template>
