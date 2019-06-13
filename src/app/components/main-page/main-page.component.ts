@@ -2,12 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { faPlusSquare, faUser, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+
+import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { EventsService } from 'src/app/services/events.service';
 import { User } from 'src/app/models/user';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -19,6 +21,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
   faHome = faHome;
+  faEllipsisV = faEllipsisV;
 
   isSearchCollapsed = true;
   isAtHomePage = false;
@@ -84,6 +87,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
           console.log('Error. File not deleted.');
         });
     });
+  }
+
+  toggleDelete() {
+    this.eventsService.deleteMode = true;
   }
 
 }

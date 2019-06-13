@@ -1,5 +1,13 @@
+<div class="navbar navbar-light bg-light" *ngIf="eventService.deleteMode">
+  <span class="navbar-brand">Navbar</span>
+  <div class="d-flex align-items-center justify-content-end">
+    <button class="form-control mr-sm-2" (click)="openConfirmModal()">Confirm</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)="onCancel()">Cancel</button>
+  </div>
+</div>
+
 <main class="container px-1">
-  <ng-container *ngIf="!removing else removableItems">
+  <ng-container *ngIf="!eventService.deleteMode else removableItems">
     <div *ngFor="let image of images" class="img-container m-1">
       <a [routerLink]="['image']" [queryParams]="{imageName: image.imageName, imageUrl: image.imageUrl }"
         queryParamsHandling="merge">
@@ -9,21 +17,12 @@
   </ng-container>
 </main>
 <ng-template #removableItems>
-  <div 
-   class='image-container'
-   *ngFor="let image of images" 
-   (click)="selectFile(image.imageName)">
-    <img 
-     [ngClass]="selectedImages.includes(image.imageName) ? 'fade-image': ''"
-     class="item-img w-100 h-100 p-1" [src]="image.imageUrl" 
-     alt="Picture">
-    <a 
-     [ngClass]="selectedImages.includes(image.imageName) ? 'display-icon': ''" 
-     class="download-link fa-3x" 
-     [href]="image.imageUrl" >
-      <fa-icon 
-       [ngClass]="selectedImages.includes(image.imageName) ? 'position-icon': ''" 
-       [icon]="faTrash">
+  <div class='image-container' *ngFor="let image of images" (click)="selectFile(image.imageName)">
+    <img [ngClass]="selectedImages.includes(image.imageName) ? 'fade-image': ''" class="item-img w-100 h-100 p-1"
+      [src]="image.imageUrl" alt="Picture">
+    <a [ngClass]="selectedImages.includes(image.imageName) ? 'display-icon': ''" class="download-link fa-3x"
+      [href]="image.imageUrl">
+      <fa-icon [ngClass]="selectedImages.includes(image.imageName) ? 'position-icon': ''" [icon]="faTrash">
       </fa-icon>
     </a>
   </div>

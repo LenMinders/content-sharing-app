@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class EventsService {
   private deletePhotosSource = new BehaviorSubject([]);
   currentPhotosToDelete = this.deletePhotosSource.asObservable();
+  deleteMode = false;
 
   constructor() { }
 

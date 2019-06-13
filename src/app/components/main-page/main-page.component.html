@@ -1,5 +1,5 @@
 <header class="fixed-top d-flex flex-column">
-  <nav>
+  <nav *ngIf="!eventsService.deleteMode">
     <div class="p-2 d-flex align-items-center">
       <app-profile-indicator></app-profile-indicator>
     </div>
@@ -20,9 +20,18 @@
       <a routerLink="/create-post" class="px-2 nav-link-style d-none d-sm-block">
         <fa-icon [icon]="faPlusSquare"></fa-icon>
       </a>
+
+      <div ngbDropdown class="d-inline-block">
+        <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
+          <fa-icon [icon]="faEllipsisV"></fa-icon>
+        </button>
+
+        <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
+          <button ngbDropdownItem (click)="toggleDelete()">Delete Post</button>
+        </div>
+      </div>
     </div>
   </nav>
-
   <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
     <input type="text" class="form-control" placeholder="Search Users">
   </div>
