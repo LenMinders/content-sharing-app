@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -7,13 +7,14 @@ import { ToastrService } from 'ngx-toastr';
 
 import { EventsService } from 'src/app/services/events.service';
 import { User } from 'src/app/models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
   faPlusSquare = faPlusSquare;
   faSearch = faSearch;
   faUser = faUser;
@@ -24,6 +25,10 @@ export class MainPageComponent implements OnInit {
   isAtProfilePage = false;
   user: User;
 
+  routerEventsSubscription: Subscription;
+  firebaseUserSubscription: Subscription;
+  deletePhotosSubscription: Subscription;
+
   constructor(
     private firebaseAuth: AngularFireAuth,
     private router: Router,
@@ -31,7 +36,7 @@ export class MainPageComponent implements OnInit {
     private toastr: ToastrService,
     private firebaseStorage: AngularFireStorage) {
 
-    router.events.subscribe((event: RouterEvent) => {
+    this.routerEventsSubscription = router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd) {
         this.isAtHomePage = router.url === '/home';
         this.isAtProfilePage = router.url === '/';
@@ -48,13 +53,19 @@ export class MainPageComponent implements OnInit {
       }
     });
 
-    this.firebaseAuth.user.subscribe(
+    this.firebaseUserSubscription = this.firebaseAuth.user.subscribe(
       user => this.user = user
     );
 
-    this.eventsService.currentPhotosToDelete.subscribe(x => {
+    this.deletePhotosSubscription = this.eventsService.currentPhotosToDelete.subscribe(x => {
       this.deletePhotos(x);
     });
+  }
+
+  ngOnDestroy() {
+    this.routerEventsSubscription.unsubscribe();
+    this.firebaseUserSubscription.unsubscribe();
+    this.deletePhotosSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {
