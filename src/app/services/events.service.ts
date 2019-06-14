@@ -8,10 +8,39 @@ export class EventsService {
   private deletePhotosSource = new BehaviorSubject([]);
   currentPhotosToDelete = this.deletePhotosSource.asObservable();
   deleteMode = false;
+  selectedImages: string[];
 
-  constructor() { }
+  constructor() {
+    this.selectedImages = [];
+  }
 
-  deletePhotos(x: string[]) {
-    this.deletePhotosSource.next(x);
+  deletePhotos() {
+    this.deletePhotosSource.next(this.selectedImages);
+  }
+
+  setSelectedImages(value: string) {
+    this.selectedImages.push(value);
+  }
+
+  getSelectedImages() {
+    return this.selectedImages;
+  }
+
+  setDeleteMode(value: boolean) {
+    this.deleteMode = value;
+  }
+
+  getDeteleMode() {
+    return this.deleteMode;
+  }
+
+  resetSelectedImages() {
+    this.selectedImages = [];
+  }
+
+  removeSelectedImage(value: string) {
+    this.selectedImages.filter((selectedImage) => {
+      return selectedImage !== value;
+    });
   }
 }

@@ -3,12 +3,10 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
 import { EventsService } from 'src/app/services/events.service';
-import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -21,13 +19,11 @@ export class ProfilePageComponent implements OnInit {
   removing = false;
   user: User;
   images: Image[];
-  selectedImages: string[];
 
   constructor(
     public db: AngularFireDatabase,
     private firebaseAuth: AngularFireAuth,
-    private eventService: EventsService,
-    private modalService: NgbModal) { }
+    private eventService: EventsService) { }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
@@ -37,38 +33,21 @@ export class ProfilePageComponent implements OnInit {
           this.images = values;
         });
     });
-    this.selectedImages = [];
   }
 
   selectFile(imageName: any) {
-    if (this.selectedImages.includes(imageName)) {
+    if (this.checkSelectedImage(imageName)) {
       this.deSelectFile(imageName);
     } else {
-      this.selectedImages.push(imageName);
+      this.eventService.setSelectedImages(imageName);
     }
   }
 
   deSelectFile(imageName: string) {
-    this.selectedImages = this.selectedImages.filter((value) => {
-      return value !== imageName;
-    });
+    this.eventService.removeSelectedImage(imageName);
   }
 
-  deletePost() {
-    this.eventService.deletePhotos(this.selectedImages);
-    this.eventService.deleteMode = false;
-  }
-
-  openConfirmModal() {
-    this.modalService.open(ConfirmDeleteModalComponent).result
-      .then((result) => {
-        this.deletePost();
-      }, (reason) => {
-        // modal closed
-      });
-  }
-
-  onCancel() {
-    this.eventService.deleteMode = false;
+  checkSelectedImage(imageName: string) {
+    return this.eventService.getSelectedImages().includes(imageName);
   }
 }

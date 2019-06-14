@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 import { EventsService } from 'src/app/services/events.service';
 import { User } from 'src/app/models/user';
+import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-main-page',
@@ -37,7 +39,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private eventsService: EventsService,
     private toastr: ToastrService,
-    private firebaseStorage: AngularFireStorage) {
+    private firebaseStorage: AngularFireStorage,
+    private modalService: NgbModal) {
 
     this.routerEventsSubscription = router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd) {
@@ -90,7 +93,23 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   toggleDelete() {
-    this.eventsService.deleteMode = true;
+    this.eventsService.setDeleteMode(true);
+  }
+
+  openConfirmModal() {
+    this.modalService.open(ConfirmDeleteModalComponent).result
+      .then((result) => {
+        this.eventsService.deletePhotos();
+        this.eventsService.setDeleteMode(false);
+        this.eventsService.resetSelectedImages();
+      }, (reason) => {
+        // modal closed
+      });
+  }
+
+  onCancel() {
+    this.eventsService.setDeleteMode(false);
+    this.eventsService.resetSelectedImages();
   }
 
 }
