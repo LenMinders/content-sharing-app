@@ -22,6 +22,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
     MainPageComponent,
     CreatePostPageComponent,
     SingleImageComponent,
-    ConfirmDeleteModalComponent
+    ConfirmDeleteModalComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,

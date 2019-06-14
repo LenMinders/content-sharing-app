@@ -11,21 +11,16 @@
         [class.active-nav-link]="isAtProfilePage" routerLink="/">Profile</a>
     </div>
 
-    <div class="p-2 d-flex align-items-center justify-content-end">
-      <button type="button" class="img-button border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
-        [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
-        <fa-icon [icon]="faSearch"></fa-icon>
-      </button>
+      <div class="p-2 d-flex align-items-center justify-content-end">
+        <a routerLink="/search" class="px-2 nav-link-style d-none d-sm-block">
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </a>
 
-      <a routerLink="/create-post" class="px-2 nav-link-style d-none d-sm-block">
-        <fa-icon [icon]="faPlusSquare"></fa-icon>
-      </a>
-    </div>
+        <a routerLink="/create-post" class="px-2 nav-link-style d-none d-sm-block">
+          <fa-icon [icon]="faPlusSquare"></fa-icon>
+        </a>
+      </div>
   </nav>
-
-  <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
-    <input type="text" class="form-control" placeholder="Search Users">
-  </div>
 </header>
 
 <router-outlet></router-outlet>

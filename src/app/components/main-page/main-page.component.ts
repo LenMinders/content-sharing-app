@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faUser = faUser;
   faHome = faHome;
 
-  isSearchCollapsed = true;
+
   isAtHomePage = false;
   isAtProfilePage = false;
   user: User;
