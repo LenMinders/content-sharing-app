@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
@@ -15,7 +15,7 @@ import { EventsService } from 'src/app/services/events.service';
 })
 
 export class ProfilePageComponent implements OnInit {
-  faTrash = faTrash;
+  faCheck = faCheck;
   removing = false;
   user: User;
   images: Image[];

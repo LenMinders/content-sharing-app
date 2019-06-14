@@ -39,7 +39,7 @@ export class EventsService {
   }
 
   removeSelectedImage(value: string) {
-    this.selectedImages.filter((selectedImage) => {
+    this.selectedImages = this.selectedImages.filter((selectedImage) => {
       return selectedImage !== value;
     });
   }

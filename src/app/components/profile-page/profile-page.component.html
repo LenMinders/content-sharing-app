@@ -12,10 +12,9 @@
   <div class='image-container' *ngFor="let image of images" (click)="selectFile(image.imageName)">
     <img [ngClass]="checkSelectedImage(image.imageName) ? 'fade-image': ''" class="item-img w-100 h-100 p-1"
       [src]="image.imageUrl" alt="Picture">
-    <a [ngClass]="checkSelectedImage(image.imageName) ? 'display-icon': ''" class="download-link fa-3x"
-      [href]="image.imageUrl">
-      <fa-icon [ngClass]="checkSelectedImage(image.imageName) ? 'position-icon': ''" [icon]="faTrash">
+    <div [ngClass]="checkSelectedImage(image.imageName) ? 'display-icon': ''" class="download-link fa-3x">
+      <fa-icon [ngClass]="checkSelectedImage(image.imageName) ? 'position-icon': ''" [icon]="faCheck">
       </fa-icon>
-    </a>
+    </div>
   </div>
 </ng-template>
