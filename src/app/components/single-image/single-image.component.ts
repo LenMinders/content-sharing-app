@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -9,13 +9,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventsService } from 'src/app/services/events.service';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
 import { User } from 'src/app/models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-single-image',
   templateUrl: './single-image.component.html',
   styleUrls: ['./single-image.component.scss']
 })
-export class SingleImageComponent implements OnInit {
+export class SingleImageComponent implements OnInit, OnDestroy {
   faHeart = faHeart;
   faComment = faComment;
   faUserCircle = faUserCircle;
@@ -27,6 +28,8 @@ export class SingleImageComponent implements OnInit {
   imageName: string;
   displayPhoto: string;
   description: string;
+
+  firebaseUserSubscription: Subscription;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -40,11 +43,15 @@ export class SingleImageComponent implements OnInit {
     this.imageName = this.route.snapshot.queryParamMap.get('imageName');
     this.displayPhoto = this.imageUrl;
 
-    this.firebaseAuth.user.subscribe(user => {
+    this.firebaseUserSubscription = this.firebaseAuth.user.subscribe(user => {
       this.user = user;
       this.retrievePostDescription();
     });
 
+  }
+
+  ngOnDestroy() {
+    this.firebaseUserSubscription.unsubscribe();
   }
 
   deletePost(): void {
