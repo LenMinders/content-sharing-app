@@ -27,7 +27,7 @@
         </button>
 
         <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
-          <button ngbDropdownItem (click)="toggleDelete()">Delete Post</button>
+          <button ngbDropdownItem (click)="toggleDelete()">Delete Posts</button>
         </div>
       </div>
     </div>
@@ -37,17 +37,17 @@
   </div>
 
   <div class="navbar navbar-light bg-light" *ngIf="eventsService.deleteMode">
-    <span class="navbar-brand">Navbar</span>
+    <span class="navbar-brand"> {{eventsService.selectedImages.length}} </span>
     <div class="d-flex align-items-center justify-content-end">
-      <button class="form-control mr-sm-2" (click)="openConfirmModal()">Confirm</button>
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="onCancel()">Cancel</button>
+        <button class="btn btn-danger mx-2" (click)="openConfirmModal()">Delete</button>
+        <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
     </div>
   </div>
 </header>
 
 <router-outlet></router-outlet>
 
-<div class="bottom-bar fixed-bottom p-2 d-sm-none d-grid">
+<div *ngIf="!eventsService.deleteMode" class="bottom-bar fixed-bottom p-2 d-sm-none d-grid">
   <div>
     <a routerLink="/home" class="nav-link-style" [class.active-nav-link-bottom]="isAtHomePage">
       <fa-icon [icon]="faHome"></fa-icon>
