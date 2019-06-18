@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Photo Details</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Image name: {{ image.imageName }}</p>
+  <p>Image type: {{ image.contentType }}</p>
+  <p>File Size: {{ image.fileSize }} bytes</p>
+  <div class="d-flex">
+    <div class="mr-2">Url: </div>
+    <div class="overflow-auto">{{ image.imageUrl }}</div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button ngbAutofocus type="button" class="btn btn-outline-secondary"
+    (click)="modal.dismiss('close click')">Close</button>
+</div>

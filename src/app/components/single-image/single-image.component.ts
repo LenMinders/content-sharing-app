@@ -7,8 +7,11 @@ import { faHeart, faComment, faUserCircle, faEllipsisV } from '@fortawesome/free
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { EventsService } from 'src/app/services/events.service';
+import { ModalInfoService } from 'src/app/services/modal-info.service';
 import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import { PhotoInfoModalComponent } from '../photo-info-modal/photo-info-modal.component';
 import { User } from 'src/app/models/user';
+import { Image } from 'src/app/models/image';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -27,7 +30,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   imageUrl: string;
   imageName: string;
   displayPhoto: string;
-  description: string;
+  image: Image;
 
   firebaseUserSubscription: Subscription;
 
@@ -35,6 +38,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
     private firebaseAuth: AngularFireAuth,
     private route: ActivatedRoute,
     private eventsService: EventsService,
+    private modalInfoService: ModalInfoService,
     private modalService: NgbModal,
     private db: AngularFireDatabase) { }
 
@@ -45,7 +49,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
 
     this.firebaseUserSubscription = this.firebaseAuth.user.subscribe(user => {
       this.user = user;
-      this.retrievePostDescription();
+      this.retrievePostInfo();
     });
 
   }
@@ -67,12 +71,15 @@ export class SingleImageComponent implements OnInit, OnDestroy {
       });
   }
 
-  retrievePostDescription() {
+  retrievePostInfo() {
     this.db.database.ref(this.user.uid + '/files/' + this.imageName.split('.')[0]).once('value')
       .then((snapshot) => {
-        this.description = snapshot.val().description;
+        this.image = snapshot.val();
       });
   }
+
+  openPhotoInfoModal() {
+    this.modalInfoService.setPhotoInfo(this.image);
+    this.modalService.open(PhotoInfoModalComponent);
+  }
 }
-
-
