@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Image } from 'src/app/models/image';
   templateUrl: './photo-info-modal.component.html',
   styleUrls: ['./photo-info-modal.component.scss']
 })
-export class PhotoInfoModalComponent implements OnInit {
+export class PhotoInfoModalComponent implements OnInit, OnDestroy {
   photoInfoSubscription: Subscription;
   image: Image;
 
@@ -20,5 +20,9 @@ export class PhotoInfoModalComponent implements OnInit {
     this.photoInfoSubscription = this.modalInfoService.currentPhotInfo.subscribe(x => {
       this.image = x;
     });
+  }
+
+  ngOnDestroy() {
+    this.photoInfoSubscription.unsubscribe();
   }
 }
