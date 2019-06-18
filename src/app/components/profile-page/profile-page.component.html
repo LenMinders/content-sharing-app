@@ -7,14 +7,14 @@
       </a>
     </div>
   </ng-container>
-</main>
-<ng-template #removableItems>
-  <div class='image-container' *ngFor="let image of images" (click)="selectFile(image.imageName)">
-    <img [ngClass]="checkSelectedImage(image.imageName) ? 'fade-image': ''" class="item-img w-100 h-100 p-1"
-      [src]="image.imageUrl" alt="Picture">
-    <div [ngClass]="checkSelectedImage(image.imageName) ? 'display-icon': ''" class="download-link fa-3x">
-      <fa-icon [ngClass]="checkSelectedImage(image.imageName) ? 'position-icon': ''" [icon]="faCheck">
-      </fa-icon>
+  <ng-template #removableItems>
+    <div class='image-container' *ngFor="let image of images" (click)="selectFile(image.imageName)">
+      <img [ngClass]="checkSelectedImage(image.imageName) ? 'fade-image': ''" class="item-img w-100 h-100 p-1"
+        [src]="image.imageUrl" alt="Picture">
+      <div [ngClass]="checkSelectedImage(image.imageName) ? 'display-icon': ''" class="download-link fa-3x">
+        <fa-icon [ngClass]="checkSelectedImage(image.imageName) ? 'position-icon': ''" [icon]="faCheck">
+        </fa-icon>
+      </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+</main>
