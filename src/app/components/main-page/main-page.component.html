@@ -1,5 +1,5 @@
 <header class="fixed-top d-flex flex-column">
-  <nav *ngIf="!eventsService.deleteMode">
+  <nav *ngIf="!deleteMode">
     <div class="p-2 d-flex align-items-center">
       <app-profile-indicator></app-profile-indicator>
     </div>
@@ -21,7 +21,7 @@
         <fa-icon [icon]="faPlusSquare"></fa-icon>
       </a>
 
-      <div ngbDropdown class="d-inline-block">
+      <div ngbDropdown class="d-inline-block" *ngIf="isAtProfilePage">
         <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
           <fa-icon [icon]="faEllipsisV"></fa-icon>
         </button>
@@ -36,8 +36,8 @@
     <input type="text" class="form-control" placeholder="Search Users">
   </div>
 
-  <div class="navbar navbar-light bg-light" *ngIf="eventsService.deleteMode">
-    <span class="navbar-brand"> {{eventsService.selectedImages.length}} </span>
+  <div class="navbar navbar-light bg-light" *ngIf="deleteMode">
+    <span class="navbar-brand"> {{selectedImages}} </span>
     <div class="d-flex align-items-center justify-content-end">
         <button class="btn btn-danger mx-2" (click)="openConfirmModal()">Delete</button>
         <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
@@ -47,7 +47,7 @@
 
 <router-outlet></router-outlet>
 
-<div *ngIf="!eventsService.deleteMode" class="bottom-bar fixed-bottom p-2 d-sm-none d-grid">
+<div *ngIf="!deleteMode" class="bottom-bar fixed-bottom p-2 d-sm-none d-grid">
   <div>
     <a routerLink="/home" class="nav-link-style" [class.active-nav-link-bottom]="isAtHomePage">
       <fa-icon [icon]="faHome"></fa-icon>
