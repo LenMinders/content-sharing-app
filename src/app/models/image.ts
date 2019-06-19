@@ -4,4 +4,5 @@ export interface Image {
     imageUrl: string;
     contentType: string;
     fileSize: string; // in bytes
+    description: string;
 }
