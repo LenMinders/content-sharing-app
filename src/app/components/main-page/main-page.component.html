@@ -21,7 +21,7 @@
         <fa-icon [icon]="faPlusSquare"></fa-icon>
       </a>
 
-      <div ngbDropdown class="d-inline-block">
+      <div ngbDropdown class="d-inline-block" *ngIf="isAtProfilePage">
         <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
           <fa-icon [icon]="faEllipsisV"></fa-icon>
         </button>
