@@ -1,13 +1,6 @@
 <main class="mx-auto">
-
   <div class="form-group d-flex flex-column mb-3">
     <input #box type="text" class="form-control" [class.is-invalid]="searchFailed" (keyup)="onKey(box.value)" />
     <p>{{box.value}}</p>
-
-    <span *ngIf="searching">searching...</span>
-    <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
-  </div>
-  <div *ngFor="let result of results">
-    <p>{{result.files}}</p>
   </div>
 </main>
