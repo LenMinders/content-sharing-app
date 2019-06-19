@@ -54,14 +54,11 @@ export class SingleImageComponent implements OnInit, OnDestroy {
     this.firebaseUserSubscription.unsubscribe();
   }
 
-  deletePost(): void {
-    this.eventsService.deletePhotos([this.imageName]);
-  }
-
   openConfirmModal() {
     this.modalService.open(ConfirmDeleteModalComponent).result
       .then((result) => {
-        this.deletePost();
+        this.eventsService.setSelectedImages(this.imageName);
+        this.eventsService.deletePhotos();
       }, (reason) => {
         // modal closed
       });

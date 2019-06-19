@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
-
+import { EventsService } from 'src/app/services/events.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -13,13 +15,15 @@ import { User } from 'src/app/models/user';
 })
 
 export class ProfilePageComponent implements OnInit {
+  faCheck = faCheck;
+  removing = false;
   user: User;
   images: Image[];
 
   constructor(
-    private firebaseAuth: AngularFireAuth,
     public db: AngularFireDatabase,
-  ) { }
+    private firebaseAuth: AngularFireAuth,
+    private eventService: EventsService) { }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
@@ -31,4 +35,19 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  selectFile(imageName: any) {
+    if (this.checkSelectedImage(imageName)) {
+      this.deSelectFile(imageName);
+    } else {
+      this.eventService.setSelectedImages(imageName);
+    }
+  }
+
+  deSelectFile(imageName: string) {
+    this.eventService.removeSelectedImage(imageName);
+  }
+
+  checkSelectedImage(imageName: string) {
+    return this.eventService.getSelectedImages().includes(imageName);
+  }
 }
