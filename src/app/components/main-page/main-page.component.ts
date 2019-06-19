@@ -20,7 +20,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faUser = faUser;
   faHome = faHome;
 
-
   isAtHomePage = false;
   isAtProfilePage = false;
   user: User;

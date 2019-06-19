@@ -4,6 +4,12 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Image } from 'src/app/models/image';
 import { faHeart, faComment, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {  map } from 'rxjs/operators';
+
+
+
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -11,37 +17,33 @@ import { faHeart, faComment, faUserCircle } from '@fortawesome/free-solid-svg-ic
 })
 export class SearchPageComponent implements OnInit {
   values: string;
-  user: User;
-  image: Image[];
 
   faHeart = faHeart;
   faComment = faComment;
   faUserCircle = faUserCircle;
-  images: Image[];
+
+  result: object;
 
   constructor(
-    private firebaseAuth: AngularFireAuth,
-    public db: AngularFireDatabase,
+    public db: AngularFireDatabase, private http: HttpClient
   ) { }
 
   ngOnInit() {
-    this.firebaseAuth.auth.onAuthStateChanged(user => {
-      this.db.list<Image>(user.uid + '/files')
-        .valueChanges()
-        .subscribe(values => {
-          this.images = values;
-        });
+    this.http.get('https://us-central1-group-project-5ab0b.cloudfunctions.net/getDescriptions?search=sunflower')
+    .subscribe((results) => {
+      this.result = results;
+      console.log(results);
     });
 
-    this.firebaseAuth.user.subscribe(
-      user => this.user = user
-    );
   }
 
-  onKey(value: string) {
-    this.values = value + ' | ';
-    if (value.includes('')) {
+  onKey(value: string): Observable<Image[]> {
+    return this.http
+      .get<Image>(`https://us-central1-group-project-5ab0b.cloudfunctions.net/getDescriptions?search=term+'${value}')`)
+      .pipe(map(x => (x as any).value));
 
-    }
+
   }
 }
+
+

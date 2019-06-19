@@ -23,6 +23,7 @@ import { CreatePostPageComponent } from './components/create-post-page/create-po
 import { SingleImageComponent } from './components/single-image/single-image.component';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   exports: [
     BrowserModule,
