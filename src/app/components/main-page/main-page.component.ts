@@ -22,6 +22,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   isAtHomePage = false;
   isAtProfilePage = false;
+  isAtSearchPage = false;
   user: User;
 
   routerEventsSubscription: Subscription;
@@ -39,6 +40,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.isAtHomePage = router.url === '/home';
         this.isAtProfilePage = router.url === '/';
+        this.isAtSearchPage = router.url === '/search';
         // TODO possibly also set website tile here
       }
     });

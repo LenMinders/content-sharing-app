@@ -33,7 +33,7 @@
   </div>
 
   <div>
-    <a routerLink="/search" class="px-2 nav-link-style">
+    <a routerLink="/search" class="px-2 nav-link-style" [class.active-nav-link-bottom]="isAtSearchPage">
       <fa-icon [icon]="faSearch"></fa-icon>
     </a>
   </div>
