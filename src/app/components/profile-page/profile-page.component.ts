@@ -22,8 +22,8 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(
     public db: AngularFireDatabase,
-    private firebaseAuth: AngularFireAuth,
-    private eventService: EventsService) { }
+    public eventService: EventsService,
+    private firebaseAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {

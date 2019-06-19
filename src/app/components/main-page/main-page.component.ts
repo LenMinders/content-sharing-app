@@ -35,9 +35,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   deletePhotosSubscription: Subscription;
 
   constructor(
+    public eventsService: EventsService,
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    private eventsService: EventsService,
     private toastr: ToastrService,
     private firebaseStorage: AngularFireStorage,
     private modalService: NgbModal) {
