@@ -29,7 +29,7 @@ export class SearchPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get('https://us-central1-group-project-5ab0b.cloudfunctions.net/getDescriptions?search=sunflower')
+    this.http.get('https://us-central1-group-project-5ab0b.cloudfunctions.net/searchPosts?searchTerm=sunflower%20picture')
     .subscribe((results) => {
       this.result = results;
       console.log(results);
@@ -39,7 +39,7 @@ export class SearchPageComponent implements OnInit {
 
   onKey(value: string): Observable<Image[]> {
     return this.http
-      .get<Image>(`https://us-central1-group-project-5ab0b.cloudfunctions.net/getDescriptions?search=term+'${value}')`)
+      .get<Image>(`https://us-central1-group-project-5ab0b.cloudfunctions.net/searchPosts?searchTerm='${value}')`)
       .pipe(map(x => (x as any).value));
 
 
