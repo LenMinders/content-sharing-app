@@ -29,7 +29,6 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   activatedRoute: any;
   imageUrl: string;
   imageName: string;
-  displayPhoto: string;
   image: Image;
 
   firebaseUserSubscription: Subscription;
@@ -45,7 +44,6 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.imageUrl = this.route.snapshot.queryParamMap.get('imageUrl');
     this.imageName = this.route.snapshot.queryParamMap.get('imageName');
-    this.displayPhoto = this.imageUrl;
 
     this.firebaseUserSubscription = this.firebaseAuth.user.subscribe(user => {
       this.user = user;
