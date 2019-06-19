@@ -29,10 +29,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
   isAtHomePage = false;
   isAtProfilePage = false;
   user: User;
+  deleteMode = false;
+  selectedImages = 0;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   deletePhotosSubscription: Subscription;
+  deleteModeSubscription: Subscription;
 
   constructor(
     public eventsService: EventsService,
@@ -66,12 +69,21 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.deletePhotosSubscription = this.eventsService.currentPhotosToDelete.subscribe(x => {
       this.deletePhotos(x);
     });
+
+    this.deleteModeSubscription = this.eventsService.currentDeleteMode.subscribe(currentDeleteMode => {
+      this.deleteMode = currentDeleteMode;
+    });
+
+    this.eventsService.currentSelectedImage.subscribe(currentSelectedImages => {
+      this.selectedImages = currentSelectedImages.length;
+    });
   }
 
   ngOnDestroy() {
     this.routerEventsSubscription.unsubscribe();
     this.firebaseUserSubscription.unsubscribe();
     this.deletePhotosSubscription.unsubscribe();
+    this.deleteModeSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {

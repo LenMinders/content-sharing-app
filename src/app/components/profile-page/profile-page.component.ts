@@ -19,10 +19,11 @@ export class ProfilePageComponent implements OnInit {
   removing = false;
   user: User;
   images: Image[];
+  deleteMode = false;
 
   constructor(
     public db: AngularFireDatabase,
-    public eventService: EventsService,
+    private eventService: EventsService,
     private firebaseAuth: AngularFireAuth) { }
 
   ngOnInit() {
@@ -32,6 +33,10 @@ export class ProfilePageComponent implements OnInit {
         .subscribe(values => {
           this.images = values;
         });
+    });
+
+    this.eventService.currentDeleteMode.subscribe( currentDeleteMode => {
+      this.deleteMode = currentDeleteMode;
     });
   }
 
