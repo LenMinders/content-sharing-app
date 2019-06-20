@@ -17,6 +17,7 @@
       <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
         <button ngbDropdownItem (click)="openConfirmModal()">Delete Post</button>
         <button ngbDropdownItem (click)="openPhotoInfoModal()" [disabled]="!image">Photo details</button>
+        <a ngbDropdownItem [href]="imageUrl" [download]="imageName">Download photo</a>
       </div>
     </div>
   </div>
