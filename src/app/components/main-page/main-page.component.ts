@@ -25,9 +25,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faHome = faHome;
   faEllipsisV = faEllipsisV;
 
-  isSearchCollapsed = true;
   isAtHomePage = false;
   isAtProfilePage = false;
+  isAtSearchPage = false;
   user: User;
   deleteMode = false;
   selectedImages = 0;
@@ -49,6 +49,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.isAtHomePage = router.url === '/home';
         this.isAtProfilePage = router.url === '/';
+        this.isAtSearchPage = router.url === '/search';
         // TODO possibly also set website tile here
       }
     });

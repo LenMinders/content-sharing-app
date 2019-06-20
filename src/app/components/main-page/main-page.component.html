@@ -11,14 +11,13 @@
         [class.active-nav-link]="isAtProfilePage" routerLink="/">Profile</a>
     </div>
 
-    <div class="p-2 d-flex align-items-center justify-content-end">
-      <button type="button" class="img-button border-0" (click)="isSearchCollapsed = !isSearchCollapsed"
-        [attr.aria-expanded]="!isSearchCollapsed" aria-controls="searchCollapse">
-        <fa-icon [icon]="faSearch"></fa-icon>
-      </button>
-
-      <a routerLink="/create-post" class="px-2 nav-link-style d-none d-sm-block">
+    <div class="p-2 d-flex align-items-center justify-content-end px-2 nav-link-style">
+      <a routerLink="/create-post" class="px-2 nav-link-style">
         <fa-icon [icon]="faPlusSquare"></fa-icon>
+      </a>
+
+      <a routerLink="/search" class="px-2 nav-link-style d-none d-sm-block">
+        <fa-icon [icon]="faSearch"></fa-icon>
       </a>
 
       <div ngbDropdown class="d-inline-block" *ngIf="isAtProfilePage">
@@ -32,15 +31,12 @@
       </div>
     </div>
   </nav>
-  <div id="searchCollapse" [ngbCollapse]="isSearchCollapsed" class="p-2">
-    <input type="text" class="form-control" placeholder="Search Users">
-  </div>
 
   <div class="navbar navbar-light bg-light" *ngIf="deleteMode">
     <span class="navbar-brand"> {{selectedImages}} </span>
     <div class="d-flex align-items-center justify-content-end">
-        <button class="btn btn-danger mx-2" (click)="openConfirmModal()">Delete</button>
-        <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
+      <button class="btn btn-danger mx-2" (click)="openConfirmModal()">Delete</button>
+      <button class="btn btn-outline-secondary" (click)="onCancel()">Cancel</button>
     </div>
   </div>
 </header>
@@ -55,8 +51,8 @@
   </div>
 
   <div>
-    <a routerLink="/create-post" class="px-2 nav-link-style">
-      <fa-icon [icon]="faPlusSquare"></fa-icon>
+    <a routerLink="/search" class="px-2 nav-link-style" [class.active-nav-link-bottom]="isAtSearchPage">
+      <fa-icon [icon]="faSearch"></fa-icon>
     </a>
   </div>
 

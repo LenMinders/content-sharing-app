@@ -22,6 +22,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { HttpClientModule} from '@angular/common/http';
 import { PhotoInfoModalComponent } from './components/photo-info-modal/photo-info-modal.component';
 
 @NgModule({
@@ -35,6 +37,7 @@ import { PhotoInfoModalComponent } from './components/photo-info-modal/photo-inf
     CreatePostPageComponent,
     SingleImageComponent,
     ConfirmDeleteModalComponent,
+    SearchPageComponent,
     PhotoInfoModalComponent
   ],
   imports: [
@@ -48,7 +51,8 @@ import { PhotoInfoModalComponent } from './components/photo-info-modal/photo-inf
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   exports: [
     BrowserModule,

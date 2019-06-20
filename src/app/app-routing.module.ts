@@ -7,6 +7,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { HomeFeedComponent } from './components/home-feed/home-feed.component';
 import { CreatePostPageComponent } from './components/create-post-page/create-post-page.component';
 import { SingleImageComponent } from './components/single-image/single-image.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,6 +28,10 @@ const routes: Routes = [{
     {
       path: 'image',
       component: SingleImageComponent
+    },
+    {
+      path: 'search',
+      component: SearchPageComponent
     }
   ]
 }, {
