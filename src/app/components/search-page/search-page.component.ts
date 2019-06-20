@@ -28,13 +28,12 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
     this.modelChanged.pipe(
-      debounceTime(500),
+      debounceTime(100),
       distinctUntilChanged())
       .subscribe(value => {
         this.http.get(`https://us-central1-group-project-5ab0b.cloudfunctions.net/searchPosts?searchTerm=${value.replace(' ', '%20')}`)
           .subscribe((results) => {
-            this.result = results;
-            console.log(results);
+            this.result = JSON.parse(results.toString());
           });
       });
   }
