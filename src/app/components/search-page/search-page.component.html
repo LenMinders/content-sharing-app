@@ -1,6 +1,6 @@
 <main class="mx-auto">
   <div class="form-group d-flex flex-column mb-3">
-    <input #box type="text" class="form-control" [class.is-invalid]="searchFailed" (keyup)="onKey(box.value)" />
+    <input #box type="text" class="form-control" [class.is-invalid]="searchFailed" placeholder="Search..." (keyup)="onKey(box.value)" />
     <p>{{box.value}}</p>
   </div>
 </main>
