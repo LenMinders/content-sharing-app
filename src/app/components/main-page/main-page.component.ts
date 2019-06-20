@@ -2,12 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { faPlusSquare, faUser, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+
+import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { EventsService } from 'src/app/services/events.service';
 import { User } from 'src/app/models/user';
-import { Subscription } from 'rxjs';
+import { ConfirmDeleteModalComponent } from '../confirm-delete-modal/confirm-delete-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-main-page',
@@ -19,22 +23,27 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
   faHome = faHome;
+  faEllipsisV = faEllipsisV;
 
   isAtHomePage = false;
   isAtProfilePage = false;
   isAtSearchPage = false;
   user: User;
+  deleteMode = false;
+  selectedImages = 0;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   deletePhotosSubscription: Subscription;
+  deleteModeSubscription: Subscription;
 
   constructor(
+    public eventsService: EventsService,
     private firebaseAuth: AngularFireAuth,
     private router: Router,
-    private eventsService: EventsService,
     private toastr: ToastrService,
-    private firebaseStorage: AngularFireStorage) {
+    private firebaseStorage: AngularFireStorage,
+    private modalService: NgbModal) {
 
     this.routerEventsSubscription = router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd) {
@@ -61,12 +70,21 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.deletePhotosSubscription = this.eventsService.currentPhotosToDelete.subscribe(x => {
       this.deletePhotos(x);
     });
+
+    this.deleteModeSubscription = this.eventsService.currentDeleteMode.subscribe(currentDeleteMode => {
+      this.deleteMode = currentDeleteMode;
+    });
+
+    this.eventsService.currentSelectedImage.subscribe(currentSelectedImages => {
+      this.selectedImages = currentSelectedImages.length;
+    });
   }
 
   ngOnDestroy() {
     this.routerEventsSubscription.unsubscribe();
     this.firebaseUserSubscription.unsubscribe();
     this.deletePhotosSubscription.unsubscribe();
+    this.deleteModeSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {
@@ -85,6 +103,26 @@ export class MainPageComponent implements OnInit, OnDestroy {
           console.log('Error. File not deleted.');
         });
     });
+  }
+
+  toggleDelete() {
+    this.eventsService.setDeleteMode(true);
+  }
+
+  openConfirmModal() {
+    this.modalService.open(ConfirmDeleteModalComponent).result
+      .then((result) => {
+        this.eventsService.deletePhotos();
+        this.eventsService.setDeleteMode(false);
+        this.eventsService.resetSelectedImages();
+      }, (reason) => {
+        // modal closed
+      });
+  }
+
+  onCancel() {
+    this.eventsService.setDeleteMode(false);
+    this.eventsService.resetSelectedImages();
   }
 
 }

@@ -1,6 +1,6 @@
 <main class="mx-auto">
   <div class="d-flex flex-column mb-3">
-    <img class="align-self-center" id="image-container" [src]="displayPhoto" download="displayPhoto" />
+    <img class="align-self-center" id="image-container" [src]="imageUrl"/>
   </div>
 
   <div class="d-flex mb-3 align-items-center" *ngIf="user">
@@ -16,21 +16,14 @@
 
       <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
         <button ngbDropdownItem (click)="openConfirmModal()">Delete Post</button>
-        <button ngbDropdownItem>Photo details</button>
+        <button ngbDropdownItem (click)="openPhotoInfoModal()" [disabled]="!image">Photo details</button>
       </div>
     </div>
   </div>
 
   <div>
     <p class="text-justify">
-      Tags / Description here..
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum.
+      {{ image?.description }}
     </p>
   </div>
 </main>

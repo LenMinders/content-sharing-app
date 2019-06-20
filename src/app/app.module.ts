@@ -24,6 +24,7 @@ import { SingleImageComponent } from './components/single-image/single-image.com
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { HttpClientModule} from '@angular/common/http';
+import { PhotoInfoModalComponent } from './components/photo-info-modal/photo-info-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule} from '@angular/common/http';
     CreatePostPageComponent,
     SingleImageComponent,
     ConfirmDeleteModalComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    PhotoInfoModalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,9 @@ import { HttpClientModule} from '@angular/common/http';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmDeleteModalComponent]
+  entryComponents: [
+    ConfirmDeleteModalComponent,
+    PhotoInfoModalComponent
+  ]
 })
 export class AppModule { }
