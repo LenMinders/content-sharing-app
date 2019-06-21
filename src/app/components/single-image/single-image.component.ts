@@ -77,4 +77,8 @@ export class SingleImageComponent implements OnInit, OnDestroy {
     this.modalInfoService.setPhotoInfo(this.image);
     this.modalService.open(PhotoInfoModalComponent);
   }
+
+  downloadImage() {
+    
+  }
 }
