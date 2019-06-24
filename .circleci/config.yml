@@ -37,6 +37,9 @@ jobs:
                 name: Install dependencies
                 command: npm install
             - run:
+                name: Rebuilding sass
+                command: npm rebuild node-sass --force
+            - run:
                 name: Building
                 command: npm run build-prod
             - save_cache:
