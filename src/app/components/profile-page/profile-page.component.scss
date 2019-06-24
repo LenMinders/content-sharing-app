@@ -1,0 +1,53 @@
+main {
+  padding: 80px 0px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.image-container {
+  position: relative;
+}
+
+.item-img {
+  object-fit: cover;
+}
+
+.fade-image {
+  opacity: 0.5
+}
+
+.image-container .download-link {
+  display: none;
+  top: -100%;
+  opacity: 0;
+  text-align: center;
+  color: inherit;
+}
+
+.display-icon {
+  display: block !important;
+  opacity: 1 !important; /* added */
+  top: 0 !important; /* added */
+  z-index: 500;
+}
+
+.position-icon {
+  top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+
+@media screen and (max-width:400px) {
+  main {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width:300px) {
+  main {
+    grid-template-columns: auto;
+  }
+}

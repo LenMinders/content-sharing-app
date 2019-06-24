@@ -1,0 +1,21 @@
+<main class="mx-auto">
+  <div class="form-group d-flex flex-column">
+    <input #box type="text" class="form-control" placeholder="Search..." (keyup)="onKey(box.value)" />
+  </div>
+
+  <div *ngFor="let item of result">
+    <div class="d-flex flex-column mb-2">
+      <img class="align-self-center" id="image-container" [src]="item.imageurl" />
+    </div>
+
+    <div class="d-flex align-items-center">
+      <div class="font-weight-bold">{{item.userdisplayname}}</div>
+    </div>
+
+    <div class="d-flex mb-5">
+      <p class="text-justify">
+        {{item.postdescription}}
+      </p>
+    </div>
+  </div>
+</main>

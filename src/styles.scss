@@ -1,11 +1,9 @@
-
-$button-align-center: center;
-$margin-login-top: 100px;
+@import '~ngx-toastr/toastr';
 
 .centerize {
-    text-align: $button-align-center;
+    text-align: center
 }
 
 .login-button-margin {
-    margin-top: $margin-login-top;
+    margin-top: 100px;
 }
