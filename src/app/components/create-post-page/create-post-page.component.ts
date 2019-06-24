@@ -17,7 +17,7 @@ export class CreatePostPageComponent implements OnInit {
   photoFile: File;
   description = '';
   user: User;
-  isMakingPost = false;
+  isLoading = false;
 
   constructor(
     private storage: StorageService,
@@ -40,8 +40,9 @@ export class CreatePostPageComponent implements OnInit {
   }
 
   makePost(): void {
-    this.isMakingPost = true;
+    this.isLoading = true;
     const fileId = Date.now().toString();
+    // TODO use cloud function for  making a post (http post)
     this.storage.uploadFile(this.photoFile, fileId)
       .then(() => {
         this.firebase.database.ref(this.user.uid + '/files/' + fileId).update({
@@ -54,7 +55,15 @@ export class CreatePostPageComponent implements OnInit {
             });
 
             this.location.back();
+          }, (error) => {
+            this.isLoading = false;
+            // TODO show toast notification
+            console.log(error);
           });
+      }, (error) => {
+        this.isLoading = false;
+        // TODO show toast notification
+        console.log(error);
       });
   }
 }
