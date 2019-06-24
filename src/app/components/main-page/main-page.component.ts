@@ -87,6 +87,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.deleteModeSubscription.unsubscribe();
   }
 
+  logOut() {
+    this.firebaseAuth.auth.signOut();
+  }
+
   deletePhotos(fileNames: string[]) {
     fileNames.forEach(fileName => {
       this.firebaseStorage.storage.ref().child(this.user.uid + '/' + fileName).delete()
