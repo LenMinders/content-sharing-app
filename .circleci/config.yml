@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/content-sharing-app
         docker:
-            - image: circleci/node:8.9.3-browsers
+            - image: circleci/node:10-jessie-browsers
         steps:
             - checkout
             - run:
@@ -28,7 +28,7 @@ jobs:
     prod-build: 
         working_directory: ~/content-sharing-app
         docker:
-            - image: circleci/node:8.9.3-browsers
+            - image: circleci/node:10-jessie-browsers
         steps:
             - checkout
             - restore_cache:
@@ -36,6 +36,9 @@ jobs:
             - run:
                 name: Install dependencies
                 command: npm install
+            - run:
+                name: Rebuilding sass
+                command: npm rebuild node-sass --force
             - run:
                 name: Building
                 command: npm run build-prod
@@ -48,7 +51,7 @@ jobs:
                     - .firebaserc
     deploy:
         docker:
-            - image: circleci/node:chakracore-8.11-browsers-legacy
+            - image: circleci/node:10-jessie-browsers
         working_directory: ~/content-sharing-app
         steps:
             - run:
