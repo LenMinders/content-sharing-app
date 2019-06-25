@@ -89,6 +89,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   deletePhotos(fileNames: string[]) {
     fileNames.forEach(fileName => {
+      this.eventsService.setIsDeleting(true);
       this.firebaseStorage.storage.ref().child(this.user.uid + '/' + fileName).delete()
         .then(() => {
           // File deleted successfully
@@ -97,9 +98,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
             positionClass: 'toast-top-left'
           });
 
+          this.eventsService.setIsDeleting(false);
           this.router.navigateByUrl('/');
         }).catch((error) => {
           // TODO show that an error occured
+          this.eventsService.setIsDeleting(false);
           console.log('Error. File not deleted.');
         });
     });
