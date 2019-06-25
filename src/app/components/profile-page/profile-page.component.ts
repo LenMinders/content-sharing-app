@@ -28,7 +28,7 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
-      this.db.list<Image>(user.uid + '/files')
+      this.db.list<Image>( '/users/' + user.uid + '/files')
         .valueChanges()
         .subscribe(values => {
           this.images = values;

@@ -69,7 +69,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   }
 
   retrievePostInfo() {
-    this.db.database.ref(this.user.uid + '/files/' + this.imageName.split('.')[0]).once('value')
+    this.db.database.ref('/users/' + this.user.uid + '/files/' + this.imageName.split('.')[0]).once('value')
       .then((snapshot) => {
         this.image = snapshot.val();
       });

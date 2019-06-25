@@ -45,7 +45,7 @@ export class CreatePostPageComponent implements OnInit {
     // TODO use cloud function for  making a post (http post)
     this.storage.uploadFile(this.photoFile, fileId)
       .then(() => {
-        this.firebase.database.ref(this.user.uid + '/files/' + fileId).update({
+        this.firebase.database.ref('/users/' + this.user.uid + '/files/' + fileId).update({
           description: this.description
         })
           .then(() => {
