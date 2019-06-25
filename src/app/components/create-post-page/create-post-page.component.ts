@@ -44,7 +44,7 @@ export class CreatePostPageComponent implements OnInit {
     const fileId = Date.now().toString();
     this.storage.uploadFile(this.photoFile, fileId)
       .then(() => {
-        this.firebase.database.ref(this.user.uid + '/files/' + fileId).update({
+        this.firebase.database.ref('/users/' + this.user.uid + '/files/' + fileId).update({
           description: this.description
         })
           .then(() => {
