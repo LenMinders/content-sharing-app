@@ -32,6 +32,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   deleteMode = false;
   selectedImages = 0;
   isLoading: boolean;
+  isDeleting: boolean;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
@@ -82,6 +83,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     });
 
     this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
+      this.isDeleting = x;
       this.isLoading = x;
   });
   }
