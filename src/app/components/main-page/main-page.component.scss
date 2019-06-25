@@ -68,3 +68,7 @@ input[type="file"] {
 #post-dropdown::after {
   display:none;
 }
+
+button:focus {
+  outline: none;
+}
