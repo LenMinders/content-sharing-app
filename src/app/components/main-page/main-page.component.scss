@@ -15,6 +15,11 @@ nav {
   grid-template-columns: repeat(3, 1fr);
 }
 
+#menu-button {
+  background-color: transparent;
+  text-align: left;
+}
+
 .bottom-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -75,4 +80,8 @@ input[type="file"] {
   75% {
     opacity: 0;
   }
+}
+
+button:focus {
+  outline: none;
 }
