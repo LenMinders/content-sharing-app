@@ -30,11 +30,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
   user: User;
   deleteMode = false;
   selectedImages = 0;
+  isLoading: boolean;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   deletePhotosSubscription: Subscription;
   deleteModeSubscription: Subscription;
+  isDeletingSubscription: Subscription;
 
   constructor(
     public eventsService: EventsService,
@@ -77,6 +79,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.eventsService.currentSelectedImage.subscribe(currentSelectedImages => {
       this.selectedImages = currentSelectedImages.length;
     });
+
+    this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
+      this.isLoading = x;
+    });
   }
 
   ngOnDestroy() {
@@ -84,10 +90,12 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.firebaseUserSubscription.unsubscribe();
     this.deletePhotosSubscription.unsubscribe();
     this.deleteModeSubscription.unsubscribe();
+    this.isDeletingSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {
     fileNames.forEach(fileName => {
+      this.eventsService.setIsDeleting(true);
       this.firebaseStorage.storage.ref().child(this.user.uid + '/' + fileName).delete()
         .then(() => {
           // File deleted successfully
@@ -96,9 +104,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
             positionClass: 'toast-top-left'
           });
 
+          this.eventsService.setIsDeleting(false);
           this.router.navigateByUrl('/');
         }).catch((error) => {
           // TODO show that an error occured
+          this.eventsService.setIsDeleting(false);
           console.log('Error. File not deleted.');
         });
     });

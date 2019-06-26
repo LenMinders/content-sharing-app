@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -7,6 +7,7 @@ import { faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
 import { EventsService } from 'src/app/services/events.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,13 +15,15 @@ import { EventsService } from 'src/app/services/events.service';
   styleUrls: ['./profile-page.component.scss']
 })
 
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements OnInit, OnDestroy {
   faCheck = faCheck;
   removing = false;
   user: User;
   images: Image[];
   deleteMode = false;
   faEllipsisV = faEllipsisV;
+  isDeleting: boolean;
+  isDeletingSubscription: Subscription;
 
   constructor(
     public db: AngularFireDatabase,
@@ -39,6 +42,14 @@ export class ProfilePageComponent implements OnInit {
     this.eventService.currentDeleteMode.subscribe( currentDeleteMode => {
       this.deleteMode = currentDeleteMode;
     });
+
+    this.isDeletingSubscription = this.eventService.currentIsDeleting.subscribe(x => {
+      this.isDeleting = x;
+    });
+  }
+
+  ngOnDestroy() {
+    this.isDeletingSubscription.unsubscribe();
   }
 
   selectFile(imageName: any) {
