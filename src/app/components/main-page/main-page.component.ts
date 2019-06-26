@@ -3,7 +3,7 @@ import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +24,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faUser = faUser;
   faHome = faHome;
   faEllipsisV = faEllipsisV;
+  faDownload = faDownload;
 
   isAtHomePage = false;
   isAtProfilePage = false;
@@ -31,11 +32,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
   user: User;
   deleteMode = false;
   selectedImages = 0;
+  isLoading: boolean;
+  isDeleting: boolean;
+  isDownloading: boolean;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   deletePhotosSubscription: Subscription;
   deleteModeSubscription: Subscription;
+  isDeletingSubscription: Subscription;
+  isDownloadingSubscription: Subscription;
 
   constructor(
     public eventsService: EventsService,
@@ -78,6 +84,15 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.eventsService.currentSelectedImage.subscribe(currentSelectedImages => {
       this.selectedImages = currentSelectedImages.length;
     });
+
+    this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
+      this.isDeleting = x;
+      this.isLoading = x;
+    });
+
+    this.isDownloadingSubscription = this.eventsService.currentIsDownloading.subscribe(x => {
+      this.isDownloading = x;
+    });
   }
 
   ngOnDestroy() {
@@ -85,10 +100,12 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.firebaseUserSubscription.unsubscribe();
     this.deletePhotosSubscription.unsubscribe();
     this.deleteModeSubscription.unsubscribe();
+    this.isDeletingSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {
     fileNames.forEach(fileName => {
+      this.eventsService.setIsDeleting(true);
       this.firebaseStorage.storage.ref().child(this.user.uid + '/' + fileName).delete()
         .then(() => {
           // File deleted successfully
@@ -97,9 +114,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
             positionClass: 'toast-top-left'
           });
 
+          this.eventsService.setIsDeleting(false);
           this.router.navigateByUrl('/');
         }).catch((error) => {
           // TODO show that an error occured
+          this.eventsService.setIsDeleting(false);
           console.log('Error. File not deleted.');
         });
     });

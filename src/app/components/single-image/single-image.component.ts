@@ -32,9 +32,11 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   imageName: string;
   image: Image;
   isDownloading: boolean;
+  isDeleting: boolean;
 
-  firebaseUserSubscription: Subscription;
   isDownloadingSubscription: Subscription;
+  firebaseUserSubscription: Subscription;
+  isDeletingSubscription: Subscription;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -54,15 +56,19 @@ export class SingleImageComponent implements OnInit, OnDestroy {
       this.retrievePostInfo();
     });
 
+    this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
+      this.isDeleting = x;
+  });
+
     this.isDownloadingSubscription = this.eventsService.currentIsDownloading.subscribe(x => {
       this.isDownloading = x;
     });
-
   }
 
   ngOnDestroy() {
     this.firebaseUserSubscription.unsubscribe();
     this.isDownloadingSubscription.unsubscribe();
+    this.isDeletingSubscription.unsubscribe();
   }
 
   openConfirmModal() {

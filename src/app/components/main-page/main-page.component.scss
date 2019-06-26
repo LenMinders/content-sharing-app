@@ -59,3 +59,20 @@ input[type="file"] {
 #post-dropdown::after {
   display:none;
 }
+
+.flash {
+  animation: flash 5s infinite;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}

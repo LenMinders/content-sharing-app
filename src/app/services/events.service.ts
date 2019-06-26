@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,12 @@ export class EventsService {
   private deleteModeSource = new BehaviorSubject(false);
   private isDownloadingSource = new BehaviorSubject(false);
   private selectedImageSource = new BehaviorSubject([]);
+  private isDeletingSource = new BehaviorSubject(false);
   currentPhotosToDelete = this.deletePhotosSource.asObservable();
   currentDeleteMode = this.deleteModeSource.asObservable();
   currentSelectedImage = this.selectedImageSource.asObservable();
   currentIsDownloading = this.isDownloadingSource.asObservable();
+  currentIsDeleting = this.isDeletingSource.asObservable();
   selectedImages: string[];
 
   constructor() {
@@ -50,5 +52,9 @@ export class EventsService {
       return selectedImage !== value;
     });
     this.selectedImageSource.next(this.selectedImages);
+  }
+
+  setIsDeleting(value: boolean) {
+    this.isDeletingSource.next(value);
   }
 }
