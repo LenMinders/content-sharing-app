@@ -31,10 +31,8 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   imageUrl: string;
   imageName: string;
   image: Image;
-  isDownloading: boolean;
   isDeleting: boolean;
 
-  isDownloadingSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   isDeletingSubscription: Subscription;
 
@@ -58,16 +56,11 @@ export class SingleImageComponent implements OnInit, OnDestroy {
 
     this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
       this.isDeleting = x;
-  });
-
-    this.isDownloadingSubscription = this.eventsService.currentIsDownloading.subscribe(x => {
-      this.isDownloading = x;
     });
   }
 
   ngOnDestroy() {
     this.firebaseUserSubscription.unsubscribe();
-    this.isDownloadingSubscription.unsubscribe();
     this.isDeletingSubscription.unsubscribe();
   }
 
@@ -107,7 +100,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
         this.eventsService.setIsDownloading(false);
         console.log(error);
       }, () =>
-        this.eventsService.setIsDownloading(false)
+          this.eventsService.setIsDownloading(false)
       );
   }
 

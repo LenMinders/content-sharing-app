@@ -23,13 +23,7 @@
           Delete post
         </button>
         <button ngbDropdownItem (click)="openPhotoInfoModal()" [disabled]="!image">Photo details</button>
-        <button ngbDropdownItem (click)="downloadImage()" [disabled]="isDownloading">
-          Download photo
-      
-          <div *ngIf="isLoading" class="spinner-border spinner-border-sm ml-2" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </button>
+        <button ngbDropdownItem (click)="downloadImage()">Download photo</button>
       </div>
     </div>
   </div>

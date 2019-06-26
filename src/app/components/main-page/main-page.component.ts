@@ -3,7 +3,7 @@ import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV, faDownload, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -25,6 +25,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faHome = faHome;
   faEllipsisV = faEllipsisV;
   faDownload = faDownload;
+  faUpload = faUpload;
 
   isAtHomePage = false;
   isAtProfilePage = false;
