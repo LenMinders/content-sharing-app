@@ -23,7 +23,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
   faHome = faHome;
-  faEllipsisV = faEllipsisV;
 
   isAtHomePage = false;
   isAtProfilePage = false;
@@ -103,10 +102,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
           console.log('Error. File not deleted.');
         });
     });
-  }
-
-  toggleDelete() {
-    this.eventsService.setDeleteMode(true);
   }
 
   openConfirmModal() {

@@ -1,9 +1,17 @@
+$primary-text-color: rgba(0, 0, 0, 0.747);
+
+#name {
+    font-size: 1.3em;
+    color: $primary-text-color
+}
+
 #email {
-    font-size: 0.7em;
+    font-size: 0.8em;
+    color: $primary-text-color
 }
 
 .image-size {
-    width: 35px;
-    height: 35px;
+    width: 55px;
+    height: 55px;
     object-fit: cover;
 }

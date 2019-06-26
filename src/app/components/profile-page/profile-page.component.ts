@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
@@ -20,6 +20,7 @@ export class ProfilePageComponent implements OnInit {
   user: User;
   images: Image[];
   deleteMode = false;
+  faEllipsisV = faEllipsisV;
 
   constructor(
     public db: AngularFireDatabase,
@@ -54,5 +55,9 @@ export class ProfilePageComponent implements OnInit {
 
   checkSelectedImage(imageName: string) {
     return this.eventService.getSelectedImages().includes(imageName);
+  }
+
+  toggleDelete() {
+    this.eventService.setDeleteMode(true);
   }
 }
