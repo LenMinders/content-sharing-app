@@ -16,6 +16,7 @@ export class CreatePostPageComponent implements OnInit {
   photoSrc: any;
   photoFile: File;
   description = '';
+  userDisplayName = '';
   user: User;
   isMakingPost = false;
 
@@ -45,7 +46,7 @@ export class CreatePostPageComponent implements OnInit {
     this.storage.uploadFile(this.photoFile, fileId)
       .then(() => {
         this.firebase.database.ref('/users/' + this.user.uid + '/files/' + fileId).update({
-          description: this.description
+          description: this.description,
         })
           .then(() => {
             this.toastr.success('Upload Complete', 'Success!', {
@@ -58,3 +59,4 @@ export class CreatePostPageComponent implements OnInit {
       });
   }
 }
+
