@@ -96,6 +96,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.isDeletingSubscription.unsubscribe();
   }
 
+  logOut() {
+    this.firebaseAuth.auth.signOut();
+  }
+
   deletePhotos(fileNames: string[]) {
     fileNames.forEach(fileName => {
       this.eventsService.setIsDeleting(true);
