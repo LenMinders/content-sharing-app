@@ -28,7 +28,7 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </a>
 
-      <div ngbDropdown class="d-inline-block" *ngIf="isAtProfilePage">
+      <div ngbDropdown class="d-inline-block " *ngIf="isAtProfilePage">
         <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
           <fa-icon [icon]="faEllipsisV"></fa-icon>
         </button>
@@ -46,6 +46,9 @@
 
       <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status">
         <span class="sr-only">Loading...</span>
+      </div>
+      <div *ngIf="isDownloading" class="flash" role="status">
+        <fa-icon [icon]="faDownload"></fa-icon>
       </div>
     </div>
   </nav>

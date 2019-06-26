@@ -55,7 +55,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
     });
 
     this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
-        this.isDeleting = x;
+      this.isDeleting = x;
     });
   }
 
@@ -87,6 +87,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   }
 
   downloadImage() {
+    this.eventsService.setIsDownloading(true);
     this.getImage(this.imageUrl)
       .subscribe((response) => {
         const blob = new Blob([response], { type: 'application/octet-stream' });
@@ -95,7 +96,12 @@ export class SingleImageComponent implements OnInit, OnDestroy {
         a.download = this.imageName;
         a.click();
         window.URL.revokeObjectURL(this.imageUrl);
-      });
+      }, (error) => {
+        this.eventsService.setIsDownloading(false);
+        console.log(error);
+      }, () =>
+          this.eventsService.setIsDownloading(false)
+      );
   }
 
   getImage(url: any) {
