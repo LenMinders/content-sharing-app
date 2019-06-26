@@ -71,4 +71,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   toggleDelete() {
     this.eventService.setDeleteMode(true);
   }
+
+  logOut() {
+    this.firebaseAuth.auth.signOut();
+  }
 }

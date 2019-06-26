@@ -1,4 +1,4 @@
-<div class="d-flex" *ngIf="user">
+<div class="d-flex mr-2" *ngIf="user">
   <fa-icon *ngIf="user.photoURL === 'undefined'" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
   <img *ngIf="user.photoURL !== 'undefined'" [src]="user.photoURL" alt="profile picture"
     class="rounded-circle image-size mr-3 ml-2 my-auto">

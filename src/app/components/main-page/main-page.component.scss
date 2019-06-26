@@ -23,6 +23,11 @@ nav {
   color: $primary-text-color;
 }
 
+#menu-button {
+  background-color: transparent;
+  text-align: left;
+}
+
 .bottom-bar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
