@@ -31,8 +31,10 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   imageUrl: string;
   imageName: string;
   image: Image;
+  isDownloading: boolean;
 
   firebaseUserSubscription: Subscription;
+  isDownloadingSubscription: Subscription;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -52,10 +54,15 @@ export class SingleImageComponent implements OnInit, OnDestroy {
       this.retrievePostInfo();
     });
 
+    this.isDownloadingSubscription = this.eventsService.currentIsDownloading.subscribe(x => {
+      this.isDownloading = x;
+    });
+
   }
 
   ngOnDestroy() {
     this.firebaseUserSubscription.unsubscribe();
+    this.isDownloadingSubscription.unsubscribe();
   }
 
   openConfirmModal() {
@@ -81,6 +88,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   }
 
   downloadImage() {
+    this.eventsService.setIsDownloading(true);
     this.getImage(this.imageUrl)
       .subscribe((response) => {
         const blob = new Blob([response], { type: 'application/octet-stream' });
@@ -89,7 +97,12 @@ export class SingleImageComponent implements OnInit, OnDestroy {
         a.download = this.imageName;
         a.click();
         window.URL.revokeObjectURL(this.imageUrl);
-      });
+      }, (error) => {
+        this.eventsService.setIsDownloading(false);
+        console.log(error);
+      }, () =>
+        this.eventsService.setIsDownloading(false)
+      );
   }
 
   getImage(url: any) {
