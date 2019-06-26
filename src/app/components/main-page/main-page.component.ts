@@ -3,7 +3,7 @@ import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faUser, faHome, faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -23,6 +23,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
   faHome = faHome;
+  faDownload = faDownload;
 
   isAtHomePage = false;
   isAtProfilePage = false;
@@ -31,12 +32,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
   deleteMode = false;
   selectedImages = 0;
   isLoading: boolean;
+  isDownloading: boolean;
 
   routerEventsSubscription: Subscription;
   firebaseUserSubscription: Subscription;
   deletePhotosSubscription: Subscription;
   deleteModeSubscription: Subscription;
   isDeletingSubscription: Subscription;
+  isDownloadingSubscription: Subscription;
 
   constructor(
     public eventsService: EventsService,
@@ -83,6 +86,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
       this.isLoading = x;
     });
+
+    this.isDownloadingSubscription = this.eventsService.currentIsDownloading.subscribe(x => {
+      this.isDownloading = x;
+    });
   }
 
   ngOnDestroy() {
@@ -91,6 +98,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.deletePhotosSubscription.unsubscribe();
     this.deleteModeSubscription.unsubscribe();
     this.isDeletingSubscription.unsubscribe();
+    this.isDownloadingSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {

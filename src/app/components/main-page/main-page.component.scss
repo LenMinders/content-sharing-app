@@ -68,3 +68,20 @@ input[type="file"] {
 .hand-cursor {
   cursor: pointer;
 }
+
+.flash {
+  animation: flash 5s infinite;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
