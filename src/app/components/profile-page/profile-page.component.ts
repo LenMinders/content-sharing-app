@@ -2,12 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { Subscription } from 'rxjs';
 import { faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 import { Image } from 'src/app/models/image';
 import { User } from 'src/app/models/user';
 import { EventsService } from 'src/app/services/events.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
@@ -17,12 +17,14 @@ import { Subscription } from 'rxjs';
 
 export class ProfilePageComponent implements OnInit, OnDestroy {
   faCheck = faCheck;
+  faEllipsisV = faEllipsisV;
+
   removing = false;
   user: User;
   images: Image[];
   deleteMode = false;
-  faEllipsisV = faEllipsisV;
   isDeleting: boolean;
+
   isDeletingSubscription: Subscription;
 
   constructor(
