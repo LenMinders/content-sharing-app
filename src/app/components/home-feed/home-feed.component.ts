@@ -8,12 +8,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeFeedComponent implements OnInit {
   result: object;
+  getHomeFeedCloudFunctionSubscription;
 
   constructor(private http: HttpClient) { }
+
   ngOnInit() {
-    this.http.get(`https://us-central1-group-project-5ab0b.cloudfunctions.net/homeFeedData`)
+    this.getHomeFeedCloudFunctionSubscription = this.http.get(`https://us-central1-group-project-5ab0b.cloudfunctions.net/homeFeedData`)
       .subscribe((results) => {
         this.result = JSON.parse(results.toString());
       });
+  }
+
+  ngDestory() {
+    this.getHomeFeedCloudFunctionSubscription.unsubscribe();
   }
 }
