@@ -16,7 +16,6 @@ export class CreatePostPageComponent implements OnInit {
   photoSrc: any;
   photoFile: File;
   description = '';
-  userDisplayName = '';
   user: User;
   isMakingPost = false;
 

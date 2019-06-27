@@ -1,6 +1,6 @@
 <main class="mx-auto">
   <div *ngFor="let item of result">
-    <div class='image-container'>
+    <div>
       <img class="item-img w-100 h-100 p-1" [src]="item.imageUrl" alt="Picture">
     </div>
 
@@ -11,7 +11,7 @@
     <div class="d-flex mb-5">
 
       <p class="text-justify">
-        <span class="timestamp">{{ item.timeDateCreated| date:'mediumDate' }}</span>
+        <span class="text-secondary">{{ item.timeDateCreated| date:'mediumDate' }}</span>
         {{item.description}}
       </p>
     </div>
