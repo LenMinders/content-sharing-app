@@ -3,6 +3,12 @@ main {
     width: 600px;
 }
 
+.image-size {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
+
 @media screen and (max-width:700px) {
 
     main {

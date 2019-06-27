@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-home-feed',
   templateUrl: './home-feed.component.html',
@@ -9,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class HomeFeedComponent implements OnInit {
   result: object;
   getHomeFeedCloudFunctionSubscription;
+
+  faUserCircle = faUserCircle;
 
   constructor(private http: HttpClient) { }
 
