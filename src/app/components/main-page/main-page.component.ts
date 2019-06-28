@@ -3,7 +3,7 @@ import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { faPlusSquare, faUser, faHome, faSearch, faEllipsisV, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare, faUser, faHome, faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   faSearch = faSearch;
   faUser = faUser;
   faHome = faHome;
-  faEllipsisV = faEllipsisV;
   faDownload = faDownload;
 
   isAtHomePage = false;
@@ -33,7 +32,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   deleteMode = false;
   selectedImages = 0;
   isLoading: boolean;
-  isDeleting: boolean;
   isDownloading: boolean;
 
   routerEventsSubscription: Subscription;
@@ -86,7 +84,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
     });
 
     this.isDeletingSubscription = this.eventsService.currentIsDeleting.subscribe(x => {
-      this.isDeleting = x;
       this.isLoading = x;
     });
 
@@ -101,10 +98,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.deletePhotosSubscription.unsubscribe();
     this.deleteModeSubscription.unsubscribe();
     this.isDeletingSubscription.unsubscribe();
-  }
-
-  logOut() {
-    this.firebaseAuth.auth.signOut();
+    this.isDownloadingSubscription.unsubscribe();
   }
 
   deletePhotos(fileNames: string[]) {
@@ -126,10 +120,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
           console.log('Error. File not deleted.');
         });
     });
-  }
-
-  toggleDelete() {
-    this.eventsService.setDeleteMode(true);
   }
 
   openConfirmModal() {

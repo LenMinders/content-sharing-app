@@ -1,5 +1,12 @@
 main {
   padding: 80px 0px;
+}
+
+#post-dropdown::after {
+  display:none;
+}
+
+.images-container {
   display: grid;
   grid-template-columns: auto auto auto;
 }
@@ -39,15 +46,18 @@ main {
   transform: translateY(-50%);
 }
 
+button:focus {
+  outline: none;
+}
 
 @media screen and (max-width:400px) {
-  main {
+  .images-container {
     grid-template-columns: auto auto;
   }
 }
 
 @media screen and (max-width:300px) {
-  main {
+  .images-container {
     grid-template-columns: auto;
   }
 }
