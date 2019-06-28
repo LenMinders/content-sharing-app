@@ -1,5 +1,23 @@
-<main>
-  <p>
-    home feed works
-  </p>
+<main class="mx-auto">
+  <div *ngFor="let item of result">
+    <div>
+      <img class="item-img w-100 h-100 p-1" [src]="item.imageUrl" alt="Picture">
+    </div>
+
+    <div class="d-flex align-items-center my-2" *ngIf="item">
+      <fa-icon *ngIf="!item.photoURL" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
+      <img *ngIf="item.photoURL" [src]="item.photoURL" alt="profile picture"
+        class="rounded-circle image-size mr-3 ml-2 my-auto">
+
+      <div class="font-weight-bold">{{item.displayName}}</div>
+    </div>
+
+    <div class="d-flex mb-5">
+
+      <p class="text-justify">
+        <span class="text-secondary">{{ item.timeDateCreated| date:'mediumDate' }}</span>
+        {{item.description}}
+      </p>
+    </div>
+  </div>
 </main>

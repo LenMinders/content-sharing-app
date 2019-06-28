@@ -1,17 +1,17 @@
 main {
-  padding: 80px 0px;
-  display: grid;
-  grid-template-columns: auto auto auto;
+    padding: 80px 50px;
+    width: 600px;
 }
 
-@media screen and (max-width:400px) {
-  main {
-    grid-template-columns: auto auto;
-  }
+.image-size {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
 }
 
-@media screen and (max-width:300px) {
-  main {
-    grid-template-columns: auto;
-  }
+@media screen and (max-width:700px) {
+
+    main {
+        width: 100%;
+    }
 }
