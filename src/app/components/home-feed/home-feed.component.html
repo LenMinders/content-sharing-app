@@ -5,11 +5,11 @@
     </div>
 
     <div class="d-flex align-items-center my-2" *ngIf="item">
-      <fa-icon *ngIf="item.photoURL === 'undefined'" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
-      <img *ngIf="item.photoURL !== 'undefined'" [src]="item.photoURL" alt="profile picture"
+      <fa-icon *ngIf="!item.photoURL" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
+      <img *ngIf="item.photoURL" [src]="item.photoURL" alt="profile picture"
         class="rounded-circle image-size mr-3 ml-2 my-auto">
-        
-        <div class="font-weight-bold">{{item.displayName}}</div>
+
+      <div class="font-weight-bold">{{item.displayName}}</div>
     </div>
 
     <div class="d-flex mb-5">
