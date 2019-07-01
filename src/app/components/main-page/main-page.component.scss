@@ -11,8 +11,21 @@ header {
 nav {
   background: $navbar-color;
   height: 65px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+}
+
+#logo {
+  width: 30px;
+  height: 30px;
+}
+
+#app-name {
+  font-size: 1.5em;
+  color: $primary-text-color;
+}
+
+#menu-button {
+  background-color: transparent;
+  text-align: left;
 }
 
 .bottom-bar {
@@ -56,6 +69,19 @@ input[type="file"] {
   cursor: pointer;
 }
 
-#post-dropdown::after {
-  display:none;
+.flash {
+  animation: flash 5s infinite;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
 }

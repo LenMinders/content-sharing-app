@@ -12,6 +12,9 @@ export class AuthService {
   doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       const provider = new firebase.auth.GoogleAuthProvider();
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
       provider.addScope('profile');
       provider.addScope('email');
       this.firebaseAuth.auth

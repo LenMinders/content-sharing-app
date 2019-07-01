@@ -1,17 +1,22 @@
 <header class="fixed-top d-flex flex-column">
-  <nav *ngIf="!deleteMode">
-    <div class="p-2 d-flex align-items-center">
-      <app-profile-indicator></app-profile-indicator>
+  <nav class="d-flex" *ngIf="!deleteMode">
+    <div class="d-flex align-items-center">
+      <a routerLink="/home" class="nav-link-style d-flex align-items-center">
+        <img *ngIf="!isLoading && !isDownloading" id="logo" class="mx-3" src="../../../assets/images/logo.svg">
+        
+        <div *ngIf="isLoading" class="spinner-border spinner-border-sm mx-3" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        
+        <div *ngIf="isDownloading" class="flash mx-3" role="status">
+          <fa-icon [icon]="faDownload"></fa-icon>
+        </div>
+        
+        <div class="font-weight-bold" id="app-name">Fizzer</div>
+      </a>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <a class="nav-link-style mr-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
-        [class.active-nav-link]="isAtHomePage" routerLink="/home">Home</a>
-      <a class="nav-link-style ml-2 p-3 font-weight-bold d-none d-sm-flex align-items-center"
-        [class.active-nav-link]="isAtProfilePage" routerLink="/">Profile</a>
-    </div>
-
-    <div class="p-2 d-flex align-items-center justify-content-end px-2 nav-link-style">
+    <div class="d-flex ml-auto mr-2 align-items-center nav-link-style">
       <a routerLink="/create-post" class="px-2 nav-link-style">
         <fa-icon [icon]="faPlusSquare"></fa-icon>
       </a>
@@ -20,15 +25,9 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </a>
 
-      <div ngbDropdown class="d-inline-block" *ngIf="isAtProfilePage">
-        <button class="img-button border-0 ml-auto" id="post-dropdown" ngbDropdownToggle>
-          <fa-icon [icon]="faEllipsisV"></fa-icon>
-        </button>
-
-        <div ngbDropdownMenu aria-labelledby="post-dropdown" placement="right-bottom">
-          <button ngbDropdownItem (click)="toggleDelete()">Delete Posts</button>
-        </div>
-      </div>
+      <a *ngIf="!isAtProfilePage" routerLink="/" class="px-2 nav-link-style d-none d-sm-block" >
+        <fa-icon [icon]="faUser"></fa-icon>
+      </a>
     </div>
   </nav>
 

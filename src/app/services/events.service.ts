@@ -7,10 +7,14 @@ import { BehaviorSubject } from 'rxjs';
 export class EventsService {
   private deletePhotosSource = new BehaviorSubject([]);
   private deleteModeSource = new BehaviorSubject(false);
+  private isDownloadingSource = new BehaviorSubject(false);
   private selectedImageSource = new BehaviorSubject([]);
+  private isDeletingSource = new BehaviorSubject(false);
   currentPhotosToDelete = this.deletePhotosSource.asObservable();
   currentDeleteMode = this.deleteModeSource.asObservable();
   currentSelectedImage = this.selectedImageSource.asObservable();
+  currentIsDownloading = this.isDownloadingSource.asObservable();
+  currentIsDeleting = this.isDeletingSource.asObservable();
   selectedImages: string[];
 
   constructor() {
@@ -34,6 +38,10 @@ export class EventsService {
     this.deleteModeSource.next(value);
   }
 
+  setIsDownloading(value: boolean) {
+    this.isDownloadingSource.next(value);
+  }
+
   resetSelectedImages() {
     this.selectedImages = [];
     this.selectedImageSource.next(this.selectedImages);
@@ -44,5 +52,9 @@ export class EventsService {
       return selectedImage !== value;
     });
     this.selectedImageSource.next(this.selectedImages);
+  }
+
+  setIsDeleting(value: boolean) {
+    this.isDeletingSource.next(value);
   }
 }
