@@ -1,6 +1,6 @@
 <main class="container">
   <div class="my-4 d-flex align-items-center">
-    <div><app-profile-indicator></app-profile-indicator></div>
+    <div><app-profile-indicator [user]="user"></app-profile-indicator></div>
 
     <div *ngIf="!deleteMode" ngbDropdown class="d-inline-block ml-auto">
       <button class="img-button border-0 ml-auto px-2 mr-2" id="post-dropdown" ngbDropdownToggle>

@@ -34,6 +34,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.firebaseAuth.auth.onAuthStateChanged(user => {
+      this.user = user;
       this.db.list<Image>( '/users/' + user.uid + '/files')
         .valueChanges()
         .subscribe(values => {
