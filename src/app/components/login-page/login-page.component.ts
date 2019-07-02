@@ -29,6 +29,8 @@ export class LoginPageComponent {
     this.authService.doGoogleLogin()
       .then(() => {
         this.zone.run(() => { this.router.navigate(['/']); });
-      });
+      }), (console.error()
+      );
   }
 }
+
