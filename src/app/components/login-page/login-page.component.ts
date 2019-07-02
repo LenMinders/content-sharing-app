@@ -20,7 +20,11 @@ export class LoginPageComponent {
       user => {
         if (user) {
           this.zone.run(() => { this.router.navigate(['/']); });
-        }
+
+          // tslint:disable-next-line: no-unused-expression
+        } else { console.error; }
+
+
       }
     );
   }
@@ -32,5 +36,12 @@ export class LoginPageComponent {
       }), (console.error()
       );
   }
+
 }
 
+// user_login() {
+//   this.userService.login(credentials).subscribe((res) => {
+//   console.log(res);
+//   }, (error) => {
+//   console.log(error);
+//   });
