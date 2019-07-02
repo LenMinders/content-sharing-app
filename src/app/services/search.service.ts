@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Search } from 'src/app/models/search';
 import { map } from 'rxjs/operators';
@@ -11,28 +11,25 @@ import { map } from 'rxjs/operators';
 })
 export class SearchService {
 
-
-  result: object;
-
-  getSearchFeedCloudFunctionSubscription;
-
   constructor(private http: HttpClient) { }
 
   getSearchFeed(value): Observable<Search[]> {
 
     return this.http
-      .get<string>(`https://us-central1-group-project-5ab0b.cloudfunctions.net/searchPosts?searchTerm=${value.replace(' ', '%20')}`)
+      .get<string>(`https://us-central1-group-project-5ab0b.cloudfunctions.net/searchPosts?searchTerm=${encodeURIComponent(value)}`)
       .pipe(map(x => {
         const output = JSON.parse(x.toString());
-        return output.map(searchjson => {
-          const soutput: Search = {
-            displayName: searchjson.displayName,
-            timeDateCreated: searchjson.timeDateCreated,
-            description: searchjson.description
+        return output.map(searchJSON => {
+          const sOutput: Search = {
+            displayName: searchJSON.displayName,
+            timeDateCreated: searchJSON.timeDateCreated,
+            description: searchJSON.description,
+            imgURL: searchJSON.imageUrl,
+            photoURL: searchJSON.photoURL
           };
-          return soutput;
+          return sOutput;
 
-        });
+          });
       }));
   }
 

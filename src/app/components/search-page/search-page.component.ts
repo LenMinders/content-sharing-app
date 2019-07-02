@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { HttpClient } from '@angular/common/http';
 
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { faHeart, faComment, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Search } from 'src/app/models/search';
 import { SearchService } from 'src/app/services/search.service';
@@ -15,31 +14,28 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  values: string;
 
-  faHeart = faHeart;
-  faComment = faComment;
   faUserCircle = faUserCircle;
 
-  result: object;
-
-  model: string;
+  model = '';
   modelChanged: Subject<string> = new Subject<string>();
 
-  search: Search[];
+  search: Search[] = [];
 
   constructor(
-    public db: AngularFireDatabase, private searchService: SearchService
+    public db: AngularFireDatabase,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
     this.modelChanged.pipe(
-      debounceTime(100),
+      debounceTime(500),
       distinctUntilChanged())
       .subscribe(value => {
         this.searchService.getSearchFeed(value)
-          .subscribe(x => { this.search = x; });
-
+          .subscribe(x => {
+            this.search = x;
+          });
       });
   }
 
