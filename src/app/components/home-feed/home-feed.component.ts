@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { HomeService } from 'src/app/services/home.service';
+import { HomeFeed } from 'src/app/models/home';
 
 @Component({
   selector: 'app-home-feed',
@@ -13,17 +14,12 @@ export class HomeFeedComponent implements OnInit {
   getHomeFeedCloudFunctionSubscription;
 
   faUserCircle = faUserCircle;
+  home: HomeFeed[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private homeFeedService: HomeService) { }
 
   ngOnInit() {
-    this.getHomeFeedCloudFunctionSubscription = this.http.get(`https://us-central1-group-project-5ab0b.cloudfunctions.net/homeFeedData`)
-      .subscribe((results) => {
-        this.result = JSON.parse(results.toString());
-      });
-  }
-
-  ngDestory() {
-    this.getHomeFeedCloudFunctionSubscription.unsubscribe();
+    this.homeFeedService.getHomeFeed()
+      .subscribe(x => { this.home = x; });
   }
 }
