@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SearchPageComponent } from './search-page.component';
+import {SearchPageComponent} from './search-page.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../../../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -23,9 +23,9 @@ describe('SearchPageComponent', () => {
         AngularFireDatabaseModule,
         HttpClientModule
       ],
-      declarations: [ SearchPageComponent ]
+      declarations: [SearchPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

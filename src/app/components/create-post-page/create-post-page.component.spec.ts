@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {APP_BASE_HREF, Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
-import { CreatePostPageComponent } from './create-post-page.component';
+import {CreatePostPageComponent} from './create-post-page.component';
 
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../../../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
 
@@ -27,10 +27,13 @@ describe('CreatePostPageComponent', () => {
         AngularFireDatabaseModule,
         FormsModule
       ],
-      declarations: [ CreatePostPageComponent ],
-      providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy },{ provide: APP_BASE_HREF, useValue: '/my/app'}]
+      declarations: [CreatePostPageComponent],
+      providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}, {
+        provide: APP_BASE_HREF,
+        useValue: '/my/app'
+      }]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,12 +5,12 @@
   </button>
 </div>
 <div class="modal-body">
-  <p>Image name: {{ image.imageName }}</p>
-  <p>Image type: {{ image.contentType }}</p>
-  <p>File Size: {{ image.fileSize }} bytes</p>
+  <p>Image name: {{ image?.imageName }}</p>
+  <p>Image type: {{ image?.contentType }}</p>
+  <p>File Size: {{ image?.fileSize }} bytes</p>
   <div class="d-flex">
     <div class="mr-2">Url: </div>
-    <div class="overflow-auto">{{ image.imageUrl }}</div>
+    <div class="overflow-auto">{{ image?.imageUrl }}</div>
   </div>
 </div>
 <div class="modal-footer">
