@@ -3,22 +3,25 @@
     <input #box type="text" class="form-control" placeholder="Search..." (keyup)="onKey(box.value)" />
   </div>
 
-  <div *ngFor="let searchResult of search">
+  <div *ngFor="let searchResult of search" class="result-card">
     <div>
       <img class="item-img w-100 h-100 p-1" [src]="searchResult.imgURL" alt="Picture">
     </div>
 
-    <div class="d-flex align-items-center my-2" *ngIf="searchResult">
+    <div class="d-flex align-items-center my-2 metadata-container" *ngIf="searchResult">
       <fa-icon *ngIf="!searchResult.photoURL" [icon]="faUserCircle" class="mr-3 ml-2 my-auto"></fa-icon>
       <img *ngIf="searchResult.photoURL" [src]="searchResult.photoURL" alt="profile picture"
-           class="rounded-circle image-size mr-3 ml-2 my-auto">
-      <div class="font-weight-bold">{{searchResult.displayName}}</div>
+        class="rounded-circle image-size mr-3 ml-2 my-auto">
+
+      <div class="name-time-container">
+        <div class="font-weight-bold">{{searchResult.displayName}}</div>
+        <span class="text-secondary">{{ searchResult.timeDateCreated| date:'mediumDate' }}</span>
+      </div>
     </div>
 
-    <div class="d-flex mb-5">
+    <div class="d-flex mb-5 result-description">
 
       <p class="text-justify">
-        <span class="text-secondary">{{ searchResult.timeDateCreated| date:'mediumDate' }}</span>
         {{searchResult.description}}
       </p>
     </div>
