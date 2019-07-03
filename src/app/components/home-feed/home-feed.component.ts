@@ -23,7 +23,7 @@ export class HomeFeedComponent implements OnInit {
       });
   }
 
-  ngDestory() {
+  ngDestroy() {
     this.getHomeFeedCloudFunctionSubscription.unsubscribe();
   }
 }

@@ -8,21 +8,26 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../../../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MainPageComponent} from './main-page.component';
 import {ConfirmDeleteModalComponent} from '../confirm-delete-modal/confirm-delete-modal.component';
+import {of} from 'rxjs';
+import { User } from 'src/app/models/user';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {NgbModalBackdrop} from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
   let fixture: ComponentFixture<MainPageComponent>;
-  let mainComponent: MainPageComponent;
   let modalService: NgbModal;
   let modalRef: NgbModalRef;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserDynamicTestingModule,
+        NgbModule,
         FontAwesomeModule,
         RouterTestingModule,
         ToastrModule.forRoot(),
@@ -33,27 +38,49 @@ describe('MainPageComponent', () => {
       ],
       declarations: [MainPageComponent, ConfirmDeleteModalComponent]
     })
+      .overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [ConfirmDeleteModalComponent] } })
       .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MainPageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
 
-    // modalService = TestBed.get(NgbModal);
-    // modalRef = modalService.open(ConfirmDeleteModalComponent);
-    // mainComponent = fixture.componentInstance;
-    // spyOn(modalService, 'open').and.returnValue(modalRef);
-    // spyOn(console, 'log').and.callThrough();
+    // Sets the test bed to actually set a user when onAuthStateChanged is subscribed to
+    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    const compile = fixture.debugElement.nativeElement;
+    const h1tag = compile.querySelector('header');
+    expect(h1tag.textContent).toBeTruthy();
+    const routerOutlet = compile.querySelector('router-outlet');
+    expect(routerOutlet).toBeTruthy();
   });
 
-  // it('Modal Opened', () => {
-  //   mainComponent.openConfirmModal();
-  //   expect(modalService.open).toHaveBeenCalled();
-  // });
+  it('modal opened', () => {
+    modalService = TestBed.get(NgbModal);
+    modalRef = modalService.open(ConfirmDeleteModalComponent);
+    spyOn(modalService, 'open').and.returnValue(modalRef);
+    spyOn(console, 'log').and.callThrough();
+
+    component.openConfirmModal();
+    expect(modalService.open).toHaveBeenCalled();
+  });
+
+  it('open confirm modal called', () => {
+    spyOn(component, 'openConfirmModal');
+    component.openConfirmModal();
+    expect(component.openConfirmModal).toHaveBeenCalled();
+  });
+
+  it('cancel called', () => {
+    spyOn(component, 'onCancel');
+    component.onCancel();
+    expect(component.onCancel).toHaveBeenCalled();
+  });
+
 });

@@ -9,6 +9,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {RouterTestingModule} from '@angular/router/testing';
 import {environment} from '../../../environments/environment';
+import {of} from "rxjs";
+import {User} from "../../models/user";
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
@@ -32,6 +34,10 @@ describe('ProfilePageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfilePageComponent);
     component = fixture.componentInstance;
+
+    // Sets the test bed to actually set a user when onAuthStateChanged is subscribed to
+    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+
     fixture.detectChanges();
   });
 
