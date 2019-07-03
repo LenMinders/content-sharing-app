@@ -26,7 +26,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   faUserCircle = faUserCircle;
   faEllipsisV = faEllipsisV;
 
-  user: User;
+  user: User = null;
   activatedRoute: any;
   imageUrl: string;
   imageName: string;

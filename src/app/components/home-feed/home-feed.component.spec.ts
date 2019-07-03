@@ -4,8 +4,7 @@ import {HomeFeedComponent} from './home-feed.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {APP_BASE_HREF, Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient, HttpHandler} from '@angular/common/http';
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
 describe('HomeFeedComponent', () => {
   let component: HomeFeedComponent;
@@ -13,14 +12,12 @@ describe('HomeFeedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FontAwesomeModule],
+      imports: [FontAwesomeModule, HttpClientTestingModule],
       declarations: [HomeFeedComponent],
       providers: [
         Location,
         {provide: LocationStrategy, useClass: PathLocationStrategy},
         {provide: APP_BASE_HREF, useValue: '/my/app'},
-        HttpClient,
-        HttpHandler,
         HttpClientTestingModule
       ]
     })
@@ -33,9 +30,9 @@ describe('HomeFeedComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => {
-    fixture.destroy();
-  });
+  // afterEach(() => {
+  //   fixture.destroy();
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();

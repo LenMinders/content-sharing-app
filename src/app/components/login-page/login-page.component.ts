@@ -1,7 +1,7 @@
-import { Component, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from 'src/app/services/auth.service';
+import {Component, NgZone} from '@angular/core';
+import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -19,7 +19,9 @@ export class LoginPageComponent {
     this.firebaseAuth.user.subscribe(
       user => {
         if (user) {
-          this.zone.run(() => { this.router.navigate(['/']); });
+          this.zone.run(() => {
+            this.router.navigate(['/']);
+          });
         }
       }
     );
@@ -28,7 +30,11 @@ export class LoginPageComponent {
   googleSignIn() {
     this.authService.doGoogleLogin()
       .then(() => {
-        this.zone.run(() => { this.router.navigate(['/']); });
-      });
+        this.zone.run(() => {
+          this.router.navigate(['/']);
+        });
+      }).catch(reason =>
+      console.error(reason)
+    );
   }
 }

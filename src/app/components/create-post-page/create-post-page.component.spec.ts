@@ -11,6 +11,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {environment} from '../../../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
+import {User} from '../../models/user';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 describe('CreatePostPageComponent', () => {
@@ -25,7 +27,8 @@ describe('CreatePostPageComponent', () => {
         AngularFireAuthModule,
         AngularFireStorageModule,
         AngularFireDatabaseModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule
       ],
       declarations: [CreatePostPageComponent],
       providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}, {
@@ -39,10 +42,25 @@ describe('CreatePostPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CreatePostPageComponent);
     component = fixture.componentInstance;
+
+    spyOn(console, 'log').and.callThrough();
+    spyOn(console, 'error').and.callThrough();
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call make post', () => {
+    // spyOn(component, 'makePost');
+    component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'url', uid: '123'} as User;
+
+    spyOn(component['storage'], 'uploadFile').and.returnValue(Promise.resolve());
+
+    component.makePost();
+    // expect(component.makePost).toHaveBeenCalled();
+    expect(component['storage'].uploadFile).toHaveBeenCalled();
   });
 });
