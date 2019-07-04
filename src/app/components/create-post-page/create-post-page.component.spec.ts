@@ -42,10 +42,6 @@ describe('CreatePostPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CreatePostPageComponent);
     component = fixture.componentInstance;
-
-    spyOn(console, 'log').and.callThrough();
-    spyOn(console, 'error').and.callThrough();
-
     fixture.detectChanges();
   });
 
@@ -53,14 +49,58 @@ describe('CreatePostPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call make post', () => {
-    // spyOn(component, 'makePost');
+  it('should loadFile', () => {
+
+    const event = new Event('TestEvent');
+    Object.defineProperty(event, 'target', {writable: false, value: {files: [new Blob()]}});
+    component.loadFile(event);
+
+    // expect(component.loadFile).toHaveBeenCalled();
+  });
+
+
+
+  it('should call make post - success', (done) => {
     component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'url', uid: '123'} as User;
 
     spyOn(component['storage'], 'uploadFile').and.returnValue(Promise.resolve());
 
+    spyOn(component['toastr'], 'success').and.callFake(() => {
+      expect(component['toastr'].success).toHaveBeenCalled();
+      done();
+    });
+
     component.makePost();
-    // expect(component.makePost).toHaveBeenCalled();
     expect(component['storage'].uploadFile).toHaveBeenCalled();
   });
+
+  it('should call make post - firebase update fail', (done) => {
+    component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'url', uid: '123'} as User;
+
+    spyOn(component['storage'], 'uploadFile').and.returnValue(Promise.resolve());
+
+    // TODO: make ref dynamic or figure out how to spy on subsequent calls or how to override local vars
+    spyOn(component['firebase'].database, 'ref').and.returnValue(Promise.reject('Reason'));
+
+    spyOn(console, 'error').and.callFake(() => {
+      expect(console.error).toHaveBeenCalled();
+      done();
+    });
+
+    component.makePost();
+  });
+
+  it('should call make post - uploadFile fail', (done) => {
+    component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'url', uid: '123'} as User;
+
+    spyOn(component['storage'], 'uploadFile').and.returnValue(Promise.reject('Reason'));
+
+    spyOn(console, 'error').and.callFake(() => {
+      expect(console.error).toHaveBeenCalled();
+      done();
+    });
+
+    component.makePost();
+  });
+
 });

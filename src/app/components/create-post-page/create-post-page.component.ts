@@ -58,12 +58,12 @@ export class CreatePostPageComponent implements OnInit {
           }, (error) => {
             this.isLoading = false;
             // TODO show toast notification
-            console.log(error);
+            console.error(error);
           });
       }, (error) => {
         this.isLoading = false;
         // TODO show toast notification
-        console.log(error);
+        console.error(error);
       });
   }
 }

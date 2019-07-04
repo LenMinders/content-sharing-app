@@ -40,7 +40,9 @@ describe('LoginPageComponent', () => {
     component = fixture.componentInstance;
 
     // Sets the test bed to actually set a user when user is subscribed to
-    spyOn(component['firebaseAuth'].user, 'subscribe').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+    spyOn(component['firebaseAuth'].user, 'subscribe').and.returnValue(
+      of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User)
+    );
 
     spyOn(component['zone'], 'run').and.callThrough();
 
@@ -60,6 +62,7 @@ describe('LoginPageComponent', () => {
     spyOn(component['router'], 'navigate').and.callFake(() => {
       expect(component['router'].navigate).toHaveBeenCalled();
       done();
+      // Further reading on "done()": https://jakemccrary.com/blog/2019/02/13/testing-asynchronous-javascript-with-jasmine/
     });
 
     component.googleSignIn();

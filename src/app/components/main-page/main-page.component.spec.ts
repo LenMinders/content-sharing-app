@@ -12,10 +12,11 @@ import {NgbModal, NgbModalRef, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MainPageComponent} from './main-page.component';
 import {ConfirmDeleteModalComponent} from '../confirm-delete-modal/confirm-delete-modal.component';
-import {of} from 'rxjs';
+import {of, Subscription} from 'rxjs';
 import { User } from 'src/app/models/user';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {NgbModalBackdrop} from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+import {NavigationEnd, RouterEvent} from "@angular/router";
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -46,8 +47,15 @@ describe('MainPageComponent', () => {
     fixture = TestBed.createComponent(MainPageComponent);
     component = fixture.componentInstance;
 
+    // spyOn(component['router'].events, 'subscribe').and.returnValue(of(new NavigationEnd(2, '/', '/')));
+
     // Sets the test bed to actually set a user when onAuthStateChanged is subscribed to
     spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+
+    // spyOn(component['router'], 'navigateByUrl').and.callFake(() => {
+    //   expect(component['router'].navigateByUrl).toHaveBeenCalled();
+    //   done();
+    // });
 
     fixture.detectChanges();
   });
@@ -82,5 +90,9 @@ describe('MainPageComponent', () => {
     component.onCancel();
     expect(component.onCancel).toHaveBeenCalled();
   });
+
+  // afterEach(() => {
+  //   component.routerEventsSubscription = new Subscription();
+  // });
 
 });
