@@ -71,6 +71,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
         this.eventsService.deletePhotos();
       }, (reason) => {
         // modal closed
+        console.error('Modal open result failure: ', reason);
       });
   }
 
@@ -98,7 +99,7 @@ export class SingleImageComponent implements OnInit, OnDestroy {
         window.URL.revokeObjectURL(this.imageUrl);
       }, (error) => {
         this.eventsService.setIsDownloading(false);
-        console.log(error);
+        console.error(error);
       }, () =>
           this.eventsService.setIsDownloading(false)
       );

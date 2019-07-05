@@ -36,7 +36,9 @@ describe('ProfilePageComponent', () => {
     component = fixture.componentInstance;
 
     // Sets the test bed to actually set a user when onAuthStateChanged is subscribed to
-    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.callFake((callback) => {
+      return callback({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User);
+    });
 
     fixture.detectChanges();
   });
@@ -44,4 +46,48 @@ describe('ProfilePageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call selectFile', () => {
+    const checkSelectedImageSpy = spyOn(component, 'checkSelectedImage').and.returnValue(true);
+    spyOn(component, 'deSelectFile');
+    spyOn(component['eventService'], 'setSelectedImages');
+
+    // If
+    component.selectFile('');
+    expect(component.deSelectFile).toHaveBeenCalled();
+    // Else
+    checkSelectedImageSpy.and.returnValue(false);
+    component.selectFile('');
+    expect(component['eventService'].setSelectedImages).toHaveBeenCalled();
+
+  });
+
+  it('should call deSelectFile', () => {
+    spyOn(component['eventService'], 'removeSelectedImage');
+
+    component.deSelectFile('');
+    expect(component['eventService'].removeSelectedImage).toHaveBeenCalled();
+  });
+
+  it('should call checkSelectedImage', () => {
+    spyOn(component['eventService'], 'getSelectedImages').and.returnValue('');
+
+    component.checkSelectedImage('');
+    expect(component['eventService'].getSelectedImages).toHaveBeenCalled();
+  });
+
+  it('should call toggleDelete', () => {
+    spyOn(component['eventService'], 'setDeleteMode');
+
+    component.toggleDelete();
+    expect(component['eventService'].setDeleteMode).toHaveBeenCalled();
+  });
+
+  it('should call logOut', () => {
+    spyOn(component['firebaseAuth'].auth, 'signOut');
+
+    component.logOut();
+    expect(component['firebaseAuth'].auth.signOut).toHaveBeenCalled();
+  });
+
 });

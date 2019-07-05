@@ -48,9 +48,17 @@ describe('MainPageComponent', () => {
     component = fixture.componentInstance;
 
     // spyOn(component['router'].events, 'subscribe').and.returnValue(of(new NavigationEnd(2, '/', '/')));
+    // spyOn(component['router'].events, 'subscribe').and.callFake((callback) => {
+    //   return callback(of(new NavigationEnd(2, '/', '/')));
+    // });
 
     // Sets the test bed to actually set a user when onAuthStateChanged is subscribed to
-    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.returnValue(of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User));
+    spyOn(component['firebaseAuth'].auth, 'onAuthStateChanged').and.callFake((callback) => {
+      return callback({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User);
+    });
+    spyOn(component['firebaseAuth'].user, 'subscribe').and.returnValue(
+      of({displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User)
+    ).and.callThrough();
 
     // spyOn(component['router'], 'navigateByUrl').and.callFake(() => {
     //   expect(component['router'].navigateByUrl).toHaveBeenCalled();
@@ -69,6 +77,29 @@ describe('MainPageComponent', () => {
     expect(routerOutlet).toBeTruthy();
   });
 
+  it('should call deletePhotos', () => {
+    component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User;
+    spyOn(component['firebaseStorage'].storage, 'ref').and.returnValue({child: () => ({delete: () => Promise.resolve()})});
+    spyOn(component['toastr'], 'success');
+    spyOn(component.eventsService, 'setIsDeleting');
+    spyOn(component['router'], 'navigateByUrl');
+
+    component.deletePhotos(['test1']);
+  });
+
+  it('should call deletePhotos and fail gracefully', (done) => {
+    component.user = {displayName: 'test', email: 'test@test.com', photoURL: 'string', uid: 'string'} as User;
+    spyOn(component['firebaseStorage'].storage, 'ref').and.returnValue({child: () => ({delete: () => Promise.reject('Reason')})});
+    spyOn(component.eventsService, 'setIsDeleting');
+
+    spyOn(console, 'error').and.callFake(() => {
+      expect(console.error).toHaveBeenCalled();
+      done();
+    });
+
+    component.deletePhotos(['test1']);
+  });
+
   it('modal opened', () => {
     modalService = TestBed.get(NgbModal);
     modalRef = modalService.open(ConfirmDeleteModalComponent);
@@ -80,19 +111,52 @@ describe('MainPageComponent', () => {
   });
 
   it('open confirm modal called', () => {
-    spyOn(component, 'openConfirmModal');
+    spyOn(component, 'openConfirmModal').and.callThrough();
+
+    spyOn(component['modalService'], 'open').and.returnValue({result: Promise.resolve()});
+
+    spyOn(component.eventsService, 'deletePhotos');
+    spyOn(component.eventsService, 'setDeleteMode');
+    spyOn(component.eventsService, 'resetSelectedImages');
+
+    component.openConfirmModal();
+    expect(component.openConfirmModal).toHaveBeenCalled();
+
+    // expect(component.eventsService.deletePhotos).toHaveBeenCalled();
+    // expect(component.eventsService.setDeleteMode).toHaveBeenCalled();
+    // expect(component.eventsService.resetSelectedImages).toHaveBeenCalled();
+  });
+
+  it('open confirm modal called but failed and error logged', (done) => {
+    spyOn(component, 'openConfirmModal').and.callThrough();
+
+    spyOn(console, 'error').and.callFake(() => {
+      expect(console.error).toHaveBeenCalled();
+      done();
+    });
+
+    spyOn(component['modalService'], 'open').and.returnValue({result: Promise.reject('Reason')});
+
     component.openConfirmModal();
     expect(component.openConfirmModal).toHaveBeenCalled();
   });
 
   it('cancel called', () => {
-    spyOn(component, 'onCancel');
+    spyOn(component.eventsService, 'setDeleteMode');
+    spyOn(component.eventsService, 'resetSelectedImages');
+
     component.onCancel();
-    expect(component.onCancel).toHaveBeenCalled();
+    expect(component.eventsService.setDeleteMode).toHaveBeenCalled();
+    expect(component.eventsService.resetSelectedImages).toHaveBeenCalled();
   });
 
-  // afterEach(() => {
-  //   component.routerEventsSubscription = new Subscription();
-  // });
+  afterEach(() => {
+    // component.routerEventsSubscription = new Subscription();
+    component.firebaseUserSubscription = new Subscription();
+  });
+
+  afterAll(() => {
+    component.ngOnDestroy();
+  });
 
 });

@@ -117,7 +117,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
         }).catch((error) => {
           // TODO show that an error occured
           this.eventsService.setIsDeleting(false);
-          console.log('Error. File not deleted.');
+          console.error('Error. File not deleted.', error);
         });
     });
   }
@@ -130,6 +130,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this.eventsService.resetSelectedImages();
       }, (reason) => {
         // modal closed
+        console.error('Modal open result failure: ', reason);
       });
   }
 

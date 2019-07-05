@@ -79,8 +79,7 @@ describe('CreatePostPageComponent', () => {
 
     spyOn(component['storage'], 'uploadFile').and.returnValue(Promise.resolve());
 
-    // TODO: make ref dynamic or figure out how to spy on subsequent calls or how to override local vars
-    spyOn(component['firebase'].database, 'ref').and.returnValue(Promise.reject('Reason'));
+    spyOn(component['firebase'].database, 'ref').and.returnValue({update: () => Promise.reject('Reason')});
 
     spyOn(console, 'error').and.callFake(() => {
       expect(console.error).toHaveBeenCalled();
